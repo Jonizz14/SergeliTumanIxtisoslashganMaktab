@@ -7,6 +7,8 @@ function Header() {
   const [open, setOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
   const [activityDropdownOpen, setActivityDropdownOpen] = useState(false);
+  const [showHeader, setShowHeader] = useState(true); // 👈 qo‘shildi
+  const [lastScrollY, setLastScrollY] = useState(0); // 👈 qo‘shildi
 
   const aboutDropdownRef = useRef(null);
   const activityDropdownRef = useRef(null);
@@ -28,6 +30,21 @@ function Header() {
   };
 
   useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setShowHeader(false);
+      } else {
+        setShowHeader(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
+  useEffect(() => {
     const handleClickOutside = (event) => {
       if (
         aboutDropdownOpen &&
@@ -47,22 +64,19 @@ function Header() {
 
       if (
         open &&
-        !event.target.closest('.menu-btn') &&
-        !event.target.closest('.mobile-nav-links')
+        !event.target.closest(".menu-btn") &&
+        !event.target.closest(".mobile-nav-links")
       ) {
         setOpen(false);
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [aboutDropdownOpen, activityDropdownOpen, open]);
 
   return (
-    <header>
+    <header className={`header ${showHeader ? "visible" : "hidden"}`}> 
       <nav className="nav-container">
         <NavLink to={"/"} onClick={closeAllDropdowns}>
           <div className="header-logo-div">
@@ -77,51 +91,34 @@ function Header() {
         <div className="nav-right-section">
           <ul className="nav-links">
             <li>
-              <NavLink className="nav-links-home" to="/" end onClick={closeAllDropdowns}>Asosiy</NavLink>
+              <NavLink className="nav-links-home" to="/" end onClick={closeAllDropdowns}>
+                Asosiy
+              </NavLink>
             </li>
           </ul>
 
           <div className="dropdown-container" ref={activityDropdownRef}>
-            <button
-              className="dropdown-toggle"
-              onClick={toggleActivityDropdown}
-            >
+            <button className="dropdown-toggle" onClick={toggleActivityDropdown}>
               Maktab Faoliyati
               <span className={`arrow ${activityDropdownOpen ? "up" : ""}`}></span>
             </button>
-
             <ul className={`dropdown-menu ${activityDropdownOpen ? "show" : ""}`}>
-              <li>
-                <NavLink to="/news" onClick={closeAllDropdowns}>Yangiliklar</NavLink>
-              </li>
-              <li>
-                <NavLink to="/announcements" onClick={closeAllDropdowns}>E'lonlar</NavLink>
-              </li>
-              <li>
-                <NavLink to="/addition" onClick={closeAllDropdowns}>To'garaklar</NavLink>
-              </li>
-              <li>
-                <NavLink to="/schedule" onClick={closeAllDropdowns}>Dars Jadvali</NavLink>
-              </li>
+              <li><NavLink to="/news" onClick={closeAllDropdowns}>Yangiliklar</NavLink></li>
+              <li><NavLink to="/announcements" onClick={closeAllDropdowns}>E'lonlar</NavLink></li>
+              <li><NavLink to="/addition" onClick={closeAllDropdowns}>To'garaklar</NavLink></li>
+              <li><NavLink to="/subject" onClick={closeAllDropdowns}>Fanlar</NavLink></li>
+              <li><NavLink to="/schedule" onClick={closeAllDropdowns}>Dars Jadvali</NavLink></li>
             </ul>
           </div>
 
           <div className="dropdown-container" ref={aboutDropdownRef}>
-            <button
-              className="dropdown-toggle"
-              onClick={toggleAboutDropdown}
-            >
+            <button className="dropdown-toggle" onClick={toggleAboutDropdown}>
               Maktabdagi Shaxslar
               <span className={`arrow ${aboutDropdownOpen ? "up" : ""}`}></span>
             </button>
-
             <ul className={`dropdown-menu ${aboutDropdownOpen ? "show" : ""}`}>
-              <li>
-                <NavLink to="/teachers" onClick={closeAllDropdowns}>Ustozlar</NavLink>
-              </li>
-              <li>
-                <NavLink to="/talentedstudents" onClick={closeAllDropdowns}>O'quvchilar</NavLink>
-              </li>
+              <li><NavLink to="/teachers" onClick={closeAllDropdowns}>Ustozlar</NavLink></li>
+              <li><NavLink to="/talentedstudents" onClick={closeAllDropdowns}>O'quvchilar</NavLink></li>
             </ul>
           </div>
 
@@ -142,30 +139,14 @@ function Header() {
         </div>
 
         <ul className={`mobile-nav-links ${open ? "active" : ""}`}>
-          <li>
-            <NavLink to="/" end onClick={closeAllDropdowns}>Asosiy</NavLink>
-          </li>
-          <li>
-            <NavLink to="/news" onClick={closeAllDropdowns}>Yangiliklar</NavLink>
-          </li>
-          <li>
-            <NavLink to="/teachers" onClick={closeAllDropdowns}>Ustozlar</NavLink>
-          </li>
-          <li>
-            <NavLink to="/schedule" onClick={closeAllDropdowns}>Dars Jadvali</NavLink>
-          </li>
-          <li>
-            <NavLink to="/announcements" onClick={closeAllDropdowns}>E'lonlar</NavLink>
-          </li>
-          <li>
-            <NavLink to="/addition" onClick={closeAllDropdowns}>To'garaklar</NavLink>
-          </li>
-          <li>
-            <NavLink to="/talentedstudents" onClick={closeAllDropdowns}>O'quvchilar</NavLink>
-          </li>
-          <li>
-            <NavLink to="/contact" onClick={closeAllDropdowns}>Bog'lanish</NavLink>
-          </li>
+          <li><NavLink to="/" end onClick={closeAllDropdowns}>Asosiy</NavLink></li>
+          <li><NavLink to="/news" onClick={closeAllDropdowns}>Yangiliklar</NavLink></li>
+          <li><NavLink to="/teachers" onClick={closeAllDropdowns}>Ustozlar</NavLink></li>
+          <li><NavLink to="/schedule" onClick={closeAllDropdowns}>Dars Jadvali</NavLink></li>
+          <li><NavLink to="/announcements" onClick={closeAllDropdowns}>E'lonlar</NavLink></li>
+          <li><NavLink to="/addition" onClick={closeAllDropdowns}>To'garaklar</NavLink></li>
+          <li><NavLink to="/talentedstudents" onClick={closeAllDropdowns}>O'quvchilar</NavLink></li>
+          <li><NavLink to="/contact" onClick={closeAllDropdowns}>Bog'lanish</NavLink></li>
         </ul>
       </nav>
     </header>
