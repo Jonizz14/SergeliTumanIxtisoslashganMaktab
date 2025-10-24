@@ -1,0 +1,147 @@
+.talented-section {
+    text-align: center;
+    margin: 50px auto 30px;
+    max-width: 1400px;
+    padding: 0 20px;
+}
+
+.talented-section-p1 {
+    font-size: 42px;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 12px;
+}
+
+.talented-section-p2 {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.talented-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    justify-content: center;
+    justify-items: center;
+    margin-bottom: 30px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.talented-card {
+    width: 100%;
+    max-width: 280px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #eee;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 420px;
+    cursor: pointer;
+    border-bottom: 5px solid #c9d1e6;
+}
+
+.talented-card:hover {
+    transform: translateY(-6px) scale(1.02) rotateX(2deg);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.talented-card img {
+    width: 100%;
+    height: 280px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #102d99;
+}
+
+.talented-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #222;
+}
+
+.talented-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.talented-card .subject {
+    font-size: 15px;
+    font-weight: 600;
+    color: #102d99;
+    margin-bottom: 12px;
+}
+
+.details-btn {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: #4b5563;
+    padding: 6px 0;
+    position: relative;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    align-self: center;
+}
+
+.details-btn::before {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #1e3a8a;
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.details-btn:hover {
+    color: #1e3a8a;
+}
+
+.details-btn:hover::before {
+    width: 100%;
+}
+
+/* Responsivlik */
+@media (max-width: 1200px) {
+    .talented-section-p1 {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 850px) {
+    .talented-section-p1 {
+        font-size: 32px;
+    }
+
+    .talented-card img {
+        height: 240px;
+    }
+}
+
+@media (max-width: 600px) {
+    .talented-section-p1 {
+        font-size: 28px;
+    }
+
+    .talented-grid {
+        gap: 18px;
+    }
+
+    .talented-card img {
+        height: 220px;
+    }
+}

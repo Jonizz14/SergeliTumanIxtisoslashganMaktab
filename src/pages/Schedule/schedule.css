@@ -1,0 +1,141 @@
+.news-section-p1 {
+  font-size: 42px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 12px;
+  margin-top: 30px;
+}
+
+.news-section-p2 {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.schedule-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.schedule-viewer {
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-viewer table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14px;
+  table-layout: auto;
+}
+
+.schedule-viewer th,
+.schedule-viewer td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+  min-width: 90px;
+}
+
+.schedule-viewer th {
+  background: #0d1b4c;
+  color: #fff;
+  font-weight: bold;
+}
+
+.schedule-viewer tr:nth-child(even) td {
+  background: #f9f9f9;
+}
+
+.schedule-viewer td:hover {
+  background: #e3f0ff;
+  transition: 0.2s;
+}
+
+.schedule-btn {
+  background-color: #102d99;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.schedule-btn:hover {
+  background-color: #0c2170;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 1024px) {
+  .news-section-p1 {
+    font-size: 36px;
+  }
+
+  .news-section-p2 {
+    font-size: 16px;
+  }
+
+  .schedule-viewer table {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .news-section-p1 {
+    font-size: 30px;
+  }
+
+  .news-section-p2 {
+    font-size: 15px;
+  }
+
+  .schedule-btn {
+    width: 100%;
+    font-size: 15px;
+    padding: 12px 0;
+  }
+
+  .schedule-viewer th,
+  .schedule-viewer td {
+    font-size: 12px;
+    min-width: 70px;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .news-section-p1 {
+    font-size: 24px;
+  }
+
+  .news-section-p2 {
+    font-size: 14px;
+  }
+
+  .schedule-btn {
+    font-size: 14px;
+    padding: 10px 0;
+    border-radius: 6px;
+  }
+
+  .schedule-viewer {
+    padding: 10px;
+  }
+
+  .schedule-viewer th,
+  .schedule-viewer td {
+    font-size: 11px;
+    min-width: 60px;
+    padding: 5px;
+  }
+}
+
