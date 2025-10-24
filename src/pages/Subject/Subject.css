@@ -1,0 +1,94 @@
+.section {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto 60px;
+    text-align: center;
+    display: flex;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #222;
+}
+
+.subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 25px;
+    justify-items: center;
+}
+
+.card {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.07);
+}
+
+.card-img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    margin-top: 25px;
+}
+
+.card-name {
+    font-weight: 500;
+    margin-top: 10px;
+    color: #222;
+}
+
+/* Hoverda chiqadigan opisaniya */
+.card-desc-hover {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    opacity: 0;
+    font-size: 13px;
+    padding: 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .card-desc-hover {
+    opacity: 1;
+}
+
+/* Mobil versiyada doim ko‘rinadigan opisaniya */
+.card-desc-mobile {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .card {
+        height: auto;
+        padding-bottom: 10px;
+    }
+
+    .card-desc-hover {
+        display: none;
+    }
+
+    .card-desc-mobile {
+        display: block;
+        color: #555;
+        font-size: 12px;
+        margin-top: 8px;
+        padding: 0 8px;
+    }
+}

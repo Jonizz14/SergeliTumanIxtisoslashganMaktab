@@ -1,5 +1,7 @@
-// this fucking piece of shit wrote by jonizz don't try read it because it's fuck yourself, tg username @jonizz_devvvv
-// this fucking code wrote by notarius tg username poxuymasmi
+// Don’t even bother reading this masterpiece — it’s written by the one and only jonizz,
+// a true legend of chaos. Username? Oh yes, @jonizz_devvvv — because one “v” just isn’t 
+// enough for that level of confidence. Reading this might cause unexpected side effects 
+// like confusion, regret, or the sudden urge to question humanity. Proceed at your own risk.
 
 import { useEffect, useState } from "react";
 import "./App.css";
@@ -21,8 +23,9 @@ import TeachersAdditionsDetails from "./pages/TeachersAdditionsDetails/TeachersA
 import HomePrincipalsDetails from "./pages/HomePrincipalsDetails/HomePrincipalsDetails";
 import OurCommand from "./pages/OurCommand/OurCommand";
 import Contact from "./pages/Contact/contact";
-import Chat from "./components/Chat/Chat"; 
+import Chat from "./components/Chat/Chat";
 import TalentedStudents from "./pages/TalentedS/TalentedStudents";
+import Subject from "./pages/Subject/Subject";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -36,7 +39,8 @@ function App() {
     "/announcements",
     "/addition",
     "/contact",
-    '/talentedstudents'
+    "/talentedstudents",
+    "/subject"
   ];
 
   useEffect(() => {
@@ -131,8 +135,9 @@ function App() {
         <Route path="/announcements" element={<Layout><Announcements /></Layout>} />
         <Route path="/addition" element={<Layout><Addition /></Layout>} />
         <Route path="*" element={<Layout><Noutfound /></Layout>} />
-        <Route path="/talentedstudents" element={<Layout><TalentedStudents/></Layout>} />
-        
+        <Route path="/talentedstudents" element={<Layout><TalentedStudents /></Layout>} />
+        <Route path="/subject" element={<Layout><Subject /></Layout>} />
+
       </Routes>
       <Chat />
     </>
