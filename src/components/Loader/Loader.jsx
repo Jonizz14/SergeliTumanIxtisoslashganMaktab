@@ -5,7 +5,7 @@ const Loader = () => {
   return (
     <div className="loader-wrapper">
       <img src="/src/components/Header/logo.svg" alt="" />
-      <p className="loader-text">Sergeli Tuman Ixtisoslashgan maktab</p>
+      <p className="loader-text">Sergeli Tuman Ixtisoslashgan Maktab</p>
       <div className="loader"></div>
     </div>
   );
