@@ -175,40 +175,40 @@ export default function Chat() {
                             </div>
                         </div>
 
-                        <div className="chat-box" ref={chatBoxRef}>
-                            {showWelcome && messages.length === 0 && (
-                                <div className="msg ai">
-                                    Salom! Men sizga yordam berish uchun shu yerdaman 😊<br />
-                                    Iltimos, biror savol yoki habar yozing...
-                                </div>
-                            )}
-                            {messages.map((m, i) => (
-                                <div key={m.id} className={`msg ${m.sender}`}>
-                                    {m.text}
-                                    {m.sender === "ai" && !loading && (
-                                        <div className="msg-actions">
-                                            <button onClick={() => copyMessage(m.text, i)} title="Nusxa qil">
-                                                {copiedIndex === i ? <FiCheck color="green" /> : <FiCopy />}
-                                            </button>
-                                            <button
-                                                className={`like-btn ${feedback[m.id] === "like" ? "active" : ""}`}
-                                                onClick={() => rateMessage(m.id, true)}
-                                                title="Yo'qdi"
-                                            >
-                                                <FiThumbsUp />
-                                            </button>
-                                            <button
-                                                className={`dislike-btn ${feedback[m.id] === "dislike" ? "active" : ""}`}
-                                                onClick={() => rateMessage(m.id, false)}
-                                                title="Yo'qmadi"
-                                            >
-                                                <FiThumbsDown />
-                                            </button>
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
+                            <div className="chat-box" ref={chatBoxRef}>
+                                {showWelcome && messages.length === 0 && (
+                                    <div className="msg ai">
+                                        Salom! Men sizga yordam berish uchun shu yerdaman 😊<br />
+                                        Iltimos, biror savol yoki habar yozing...
+                                    </div>
+                                )}
+                                {messages.map((m, i) => (
+                                    <div key={m.id} className={`msg ${m.sender}`}>
+                                        {m.text}
+                                        {m.sender === "ai" && !loading && (
+                                            <div className="msg-actions">
+                                                <button onClick={() => copyMessage(m.text, i)} title="Nusxa qil">
+                                                    {copiedIndex === i ? <FiCheck color="green" /> : <FiCopy />}
+                                                </button>
+                                                <button
+                                                    className={`like-btn ${feedback[m.id] === "like" ? "active" : ""}`}
+                                                    onClick={() => rateMessage(m.id, true)}
+                                                    title="Yo'qdi"
+                                                >
+                                                    <FiThumbsUp />
+                                                </button>
+                                                <button
+                                                    className={`dislike-btn ${feedback[m.id] === "dislike" ? "active" : ""}`}
+                                                    onClick={() => rateMessage(m.id, false)}
+                                                    title="Yo'qmadi"
+                                                >
+                                                    <FiThumbsDown />
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
 
                         <div className="chat-input">
                             <input
