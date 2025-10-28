@@ -106,7 +106,6 @@ function Header() {
               <li><NavLink to="/news" onClick={closeAllDropdowns}>Yangiliklar</NavLink></li>
               <li><NavLink to="/announcements" onClick={closeAllDropdowns}>E'lonlar</NavLink></li>
               <li><NavLink to="/addition" onClick={closeAllDropdowns}>To'garaklar</NavLink></li>
-              <li><NavLink to="/subject" onClick={closeAllDropdowns}>Fanlar</NavLink></li>
               <li><NavLink to="/schedule" onClick={closeAllDropdowns}>Dars Jadvali</NavLink></li>
             </ul>
           </div>

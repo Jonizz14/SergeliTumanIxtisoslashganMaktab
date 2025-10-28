@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./home.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -18,18 +18,11 @@ import "swiper/css/pagination";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 
 function Home() {
-  const [students, setStudents] = useState([]);
-  const [teachers, setTeachers] = useState([]);
-  const [classes, setClasses] = useState([]);
   const [news, setNews] = useState([]);
   const [announcements, setAnnouncements] = useState([]);
   const [director, setDirector] = useState([]);
   const [principals, setPrincipals] = useState([]);
   const [additions, setAdditions] = useState([]);
-
-  const [studentCount, setStudentCount] = useState(0);
-  const [teacherCount, setTeacherCount] = useState(0);
-  const [classCount, setClassCount] = useState(0);
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: true, offset: 100 });
@@ -40,18 +33,6 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:3000/students")
-      .then((res) => res.json())
-      .then((data) => setStudents(data));
-
-    fetch("http://localhost:3000/teachers")
-      .then((res) => res.json())
-      .then((data) => setTeachers(data));
-
-    fetch("http://localhost:3000/classes")
-      .then((res) => res.json())
-      .then((data) => setClasses(data));
-
     fetch("http://localhost:3000/news")
       .then((res) => res.json())
       .then((data) => setNews(data));
@@ -69,56 +50,30 @@ function Home() {
       .then((data) => setAnnouncements(data));
   }, []);
 
+  const [students, setStudents] = useState(0);
+  const [teachers, setTeachers] = useState(0);
+  const [classes, setClasses] = useState(0);
+
   useEffect(() => {
-    const section = document.querySelector(".section");
-    let started = false;
+    const duration = 10000;
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting && !started) {
-          started = true;
+    const animate = (setter, end) => {
+      let startTime = null;
+      function update(time) {
+        if (!startTime) startTime = time;
+        const progress = Math.min((time - startTime) / duration, 1);
+        const eased = easeOutCubic(progress);
+        setter(Math.floor(eased * end));
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    };
 
-          const duration = 6000;
-          const steps = 200;
-          const interval = duration / steps;
-
-          let studentStep = students.length / steps;
-          let teacherStep = teachers.length / steps;
-          let classStep = classes.length / steps;
-
-          let s = 0,
-            t = 0,
-            c = 0;
-
-          const timer = setInterval(() => {
-            s += studentStep;
-            t += teacherStep;
-            c += classStep;
-
-            if (
-              s >= students.length &&
-              t >= teachers.length &&
-              c >= classes.length
-            ) {
-              clearInterval(timer);
-              setStudentCount(students.length);
-              setTeacherCount(teachers.length);
-              setClassCount(classes.length);
-            } else {
-              setStudentCount(Math.floor(s));
-              setTeacherCount(Math.floor(t));
-              setClassCount(Math.floor(c));
-            }
-          }, interval);
-        }
-      },
-      { threshold: 0.4 }
-    );
-
-    if (section) observer.observe(section);
-    return () => observer.disconnect();
-  }, [students, teachers, classes]);
+    animate(setStudents, 500);
+    animate(setTeachers, 50);
+    animate(setClasses, 20);
+  }, [])
 
   const images = [
     "https://picsum.photos/id/1015/800/500",
@@ -222,25 +177,28 @@ function Home() {
             <p className="section-div-card-icon">
               <LuGraduationCap size={30} />
             </p>
-            <p className="section-div-card-p1">{studentCount}</p>
+            <p className="section-div-card-p1">{students} +</p>
             <p className="section-div-card-p2">O'quvchilar</p>
           </div>
+
           <div className="section-div-card">
             <p className="section-div-card-icon">
               <FiUsers size={30} />
             </p>
-            <p className="section-div-card-p1">{teacherCount}</p>
+            <p className="section-div-card-p1">{teachers} +</p>
             <p className="section-div-card-p2">Ustozlar</p>
           </div>
+
           <div className="section-div-card">
             <p className="section-div-card-icon">
               <FiBookOpen size={30} />
             </p>
-            <p className="section-div-card-p1">{classCount}</p>
+            <p className="section-div-card-p1">{classes} +</p>
             <p className="section-div-card-p2">Sinflar</p>
           </div>
         </div>
       </section>
+
       <section className="advantages-block">
         <div data-aos="fade-up" className="advantages-wrapper">
           <div className="advantages-heading">

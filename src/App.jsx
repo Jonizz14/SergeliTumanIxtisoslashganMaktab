@@ -25,7 +25,6 @@ import OurCommand from "./pages/OurCommand/OurCommand";
 import Contact from "./pages/Contact/contact";
 import Chat from "./components/Chat/Chat";
 import TalentedStudents from "./pages/TalentedS/TalentedStudents";
-import Subject from "./pages/Subject/Subject";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -40,7 +39,6 @@ function App() {
     "/addition",
     "/contact",
     "/talentedstudents",
-    "/subject"
   ];
 
   useEffect(() => {
@@ -136,8 +134,7 @@ function App() {
         <Route path="/addition" element={<Layout><Addition /></Layout>} />
         <Route path="*" element={<Layout><Noutfound /></Layout>} />
         <Route path="/talentedstudents" element={<Layout><TalentedStudents /></Layout>} />
-        <Route path="/subject" element={<Layout><Subject /></Layout>} />
-
+        
       </Routes>
       <Chat />
     </>
