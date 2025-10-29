@@ -337,7 +337,7 @@ function Home() {
 
       <section data-aos="fade-up" className="home-section">
         <div className="home-section__header">
-          <h2 className="home-section__title">So‘nggi yangiliklar</h2>
+          <h2 className="home-section__title">Maktab yangiliklari</h2>
           <Link to="/news" className="home-section__link">Yangiliklarga o‘tish →</Link>
         </div>
 
@@ -370,7 +370,7 @@ function Home() {
 
       <section data-aos="fade-up" className="home-section">
         <div className="home-section__header">
-          <h2 className="home-section__title">E’lonlar</h2>
+          <h2 className="home-section__title">Maktab e’lonlari</h2>
           <Link to="/announcements" className="home-section__link">E’lonlarga o‘tish →</Link>
         </div>
 
@@ -395,7 +395,7 @@ function Home() {
 
       <section data-aos="fade-up" className="home-section">
         <div className="home-section__header">
-          <h2 className="home-section__title">So‘nggi to‘garaklar</h2>
+          <h2 className="home-section__title">Maktab to‘garaklari</h2>
           <Link to="/addition" className="home-section__link">
             To‘garaklarga o‘tish →
           </Link>
