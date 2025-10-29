@@ -29,7 +29,7 @@
   font-family: "Roboto", sans-serif;
   text-align: center;
   color: #1a2a4f;
-  background: #ffffff;
+  background: #f8faff;
 }
 
 .leadership-section {
@@ -291,7 +291,7 @@
 }
 
 .info {
-  background: #f9fafc;
+  background: #f8faff;
   padding: 80px 20px;
   display: flex;
   justify-content: center;
@@ -384,7 +384,6 @@
     font-size: 15px;
   }
 }
-
 
 .features-section {
   display: flex;
@@ -501,7 +500,7 @@
   padding: 60px 20px;
   display: flex;
   justify-content: center;
-  background: #fff;
+  background: #f8faff;
 }
 
 .section-div {
@@ -543,7 +542,7 @@
 
 .advantages-block {
   padding: 90px 20px;
-  background: #f3f7fc;
+  background: #f8faff;
   position: relative;
   overflow: hidden;
 }

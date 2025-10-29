@@ -138,7 +138,7 @@ function Home() {
           </div>
 
           <div data-aos="fade-left" className="info__content">
-            <h2 className="info__title">Maktabimiz haqida umumiy ma'lumot</h2>
+            <h2 className="info__title">Maktabimiz haqida qisqacha ma'lumot</h2>
 
             <div className="info__row">
               <span className="info__line"></span>
