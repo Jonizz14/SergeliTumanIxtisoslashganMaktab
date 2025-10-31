@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { IoCalendarNumber } from "react-icons/io5";
 import "/src/pages/NewsDetails/NewsDetails.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function NewsDetails() {
   const location = useLocation();
@@ -23,8 +25,12 @@ function NewsDetails() {
     );
   }
 
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true, offset: 100 });
+  }, []);
+
   return (
-    <div className="newsdetails">
+    <div data-aos="fade-up" className="newsdetails">
       <div className="breadcrumb">
         <Link to="/news" className="breadcrumb-link">Yangiliklar</Link>
         <span className="breadcrumb-separator">/</span>

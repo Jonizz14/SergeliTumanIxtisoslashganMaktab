@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { IoCalendarNumber } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import "/src/pages/News/news.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function News() {
   const [news, setNews] = useState([]);
@@ -25,8 +27,16 @@ function News() {
     item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true, offset: 100 });
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="news-section">
+    <div data-aos="fade-up" className="news-section">
       <p className="news-section-p1">Maktab yangiliklari</p>
       <p className="news-section-p2">
         Maktabimiz hayotidagi so‘nggi voqealar va muhim yangiliklar
@@ -42,7 +52,7 @@ function News() {
         />
       </form>
 
-      <div className="news-list">
+      <div data-aos="fade-up" className="news-list">
         {filteredNews.map((item) => (
           <div key={item.title} className="news-card">
             <img src={item.image} alt={item.title} />
@@ -63,7 +73,7 @@ function News() {
               >
                 Batafsil
               </Link>
-              
+
             </div>
           </div>
         ))}

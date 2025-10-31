@@ -86,7 +86,7 @@ function Home() {
   return (
     <>
 
-      <div className="welcome-container">
+      <div data-aos="fade-up" className="welcome-container">
         <Swiper
           modules={[Autoplay]}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -105,12 +105,12 @@ function Home() {
           </SwiperSlide>
         </Swiper>
 
-        <div className="welcome-overlay">
+        <div data-aos="fade-up" className="welcome-overlay">
           <div className="welcome-content">
             <h1 className="welcome-title">Sergeli tuman ixtisoslashgan maktabiga xush kelibsiz</h1>
             <p className="welcome-subtitle">Kelajak uchun ta'lim</p>
 
-            <div className="features-section">
+            <div data-aos="fade-up" className="features-section">
               <Link to={"/news"}>
                 <button className="feature-card-primary-card">
                   <FiBookOpen size={20} />
@@ -288,6 +288,7 @@ function Home() {
           </div>
         </section>
       </div>
+      
       <section data-aos="fade-up" className="bg-gray-900 py-14">
         <div className="swiper-title-bottom">
           <p className="swiper-botto-p">
@@ -336,12 +337,12 @@ function Home() {
       </section>
 
       <section data-aos="fade-up" className="home-section">
-        <div className="home-section__header">
+        <div data-aos="fade-up" className="home-section__header">
           <h2 className="home-section__title">Maktab yangiliklari</h2>
           <Link to="/news" className="home-section__link">Yangiliklarga o‘tish →</Link>
         </div>
 
-        <div className="home-section__grid">
+        <div data-aos="fade-up" className="home-section__grid">
           {news.slice(0, 3).map((item) => (
             <div key={item.id} className="home-card">
               <img src={item.image} alt={item.title} className="home-card__img" />
@@ -369,12 +370,12 @@ function Home() {
       </section>
 
       <section data-aos="fade-up" className="home-section">
-        <div className="home-section__header">
+        <div data-aos="fade-up" className="home-section__header">
           <h2 className="home-section__title">Maktab e’lonlari</h2>
           <Link to="/announcements" className="home-section__link">E’lonlarga o‘tish →</Link>
         </div>
 
-        <div className="home-section__grid">
+        <div data-aos="fade-up" className="home-section__grid">
           {announcements.slice(0, 3).map((item) => (
             <div key={item.id} className="home-card">
               <img src={item.image} alt={item.title} className="home-card__img" />
@@ -394,14 +395,14 @@ function Home() {
       </section>
 
       <section data-aos="fade-up" className="home-section">
-        <div className="home-section__header">
+        <div data-aos="fade-up" className="home-section__header">
           <h2 className="home-section__title">Maktab to‘garaklari</h2>
           <Link to="/addition" className="home-section__link">
             To‘garaklarga o‘tish →
           </Link>
         </div>
 
-        <div className="home-section__grid">
+        <div data-aos="fade-up" className="home-section__grid">
           {additions.slice(0, 3).map((item) => (
             <div key={item.id} className="home-card">
               <img src={item.image} alt={item.name} className="home-card__img" />

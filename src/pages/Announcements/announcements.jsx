@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { IoTimeOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import "/src/pages/Announcements/announcements.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Announcements() {
   const [anons, setAnons] = useState([]);
@@ -25,8 +27,16 @@ function Announcements() {
     item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true, offset: 100 });
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="anons-section">
+    <div data-aos="fade-up" className="anons-section">
       <p className="anons-title">E'lonlar</p>
       <p className="anons-subtitle">
         Maktabimizdagi eng so‘nggi anonslar va xabarlar
@@ -42,7 +52,7 @@ function Announcements() {
         />
       </form>
 
-      <div className="anons-list">
+      <div data-aos="fade-up" className="anons-list">
         {filteredAnons.map((item) => (
           <div key={item.id || item.title} className="anons-card">
             <img src={item.image} alt={item.title} />

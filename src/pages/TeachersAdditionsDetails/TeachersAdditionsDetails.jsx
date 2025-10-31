@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import "/src/pages/TeachersDetails/TeachersDetails.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function TeachersAdditionsDetails() {
     const { id } = useParams();
@@ -32,6 +34,10 @@ function TeachersAdditionsDetails() {
         fetchTeacherFromAddition();
     }, [id]);
 
+    useEffect(() => {
+        AOS.init({ duration: 1000, once: true, offset: 100 });
+    }, []);
+
     if (!teacher) {
         return (
             <div className="teacherdetails">
@@ -44,7 +50,7 @@ function TeachersAdditionsDetails() {
     }
 
     return (
-        <div className="teacherdetails">
+        <div data-aos="fade-up" className="teacherdetails">
             <div className="breadcrumb">
                 <Link to="/addition" className="breadcrumb-link">To‘garaklar</Link>
                 <span className="breadcrumb-separator">/</span>

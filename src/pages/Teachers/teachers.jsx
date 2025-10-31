@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./teachers.css";
 import { useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Teachers() {
   const [teachers, setTeachers] = useState([]);
@@ -39,9 +41,17 @@ function Teachers() {
     }
   };
 
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true, offset: 100 });
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
-      <section className="main-section">
+      <section data-aos="fade-up" className="main-section">
         <div className="teachers-section">
           <p className="teachers-section-p1">Bizning ustozlar</p>
           <p className="teachers-section-p2">
@@ -65,7 +75,7 @@ function Teachers() {
           </form>
         </div>
 
-        <section className="teachers-grid">
+        <section data-aos="fade-up" className="teachers-grid">
           {filteredTeachers.length > 0 ? (
             filteredTeachers.map((teacher) => (
               <div

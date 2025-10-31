@@ -1,6 +1,8 @@
 import "./OurCommand.css";
 import { FaGithub, FaTelegramPlane } from "react-icons/fa";
 import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const teamMembers = [
   {
@@ -28,8 +30,12 @@ export default function OurCommand() {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true, offset: 100 });
+  }, []);
+
   return (
-    <div className="team-page">
+    <div data-aos="fade-up" className="team-page">
       <header className="team-hero">
         <div className="hero-content">
           <h1>Bizning Jamoa</h1>
@@ -86,8 +92,8 @@ export default function OurCommand() {
           </article>
         ))}
       </main>
-    
-      <section className="project-info">
+
+      <section data-aos="fade-up" className="project-info">
         <div className="project-inner">
           <h2>Loyiha haqida</h2>
           <p>

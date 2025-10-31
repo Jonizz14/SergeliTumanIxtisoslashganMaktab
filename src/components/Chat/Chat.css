@@ -521,7 +521,7 @@
   .chat-wrapper {
     bottom: 15px;
     right: 15px;
-    left: auto; /* 🔥 chapdan emas, faqat o‘ngdan joylashadi */
+    left: auto;
     display: flex;
     justify-content: flex-end;
   }
@@ -529,8 +529,8 @@
   .chat-container {
     width: 60px;
     height: 60px;
-    right: 0;
-    bottom: 0;
+    right: 5px;
+    bottom: 5px;
     border-radius: 50%;
     position: fixed;
     transition: all 0.4s ease;
@@ -549,6 +549,7 @@
     top: 0;
     bottom: 0;
     border-radius: 0;
+    padding-bottom: 9px;
     position: fixed;
     animation: slideInRight 0.4s cubic-bezier(0.4, 0.2, 0, 1);
     z-index: 99999;
@@ -569,11 +570,11 @@
 
   @keyframes slideInRight {
     from {
-      transform: translateX(100%);
+      transform: translateY(300%);
       opacity: 0;
     }
     to {
-      transform: translateX(0);
+      transform: translateY(0);
       opacity: 1;
     }
   }
@@ -602,7 +603,7 @@
   }
 
   .chat-input button {
-    padding: 14px 18px;
+    padding: 14px 15px;
     font-size: 16px;
     min-width: 80px;
   }

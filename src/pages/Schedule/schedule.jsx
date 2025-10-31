@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
 import "./schedule.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Schedule() {
   const [htmlTable, setHtmlTable] = useState("");
@@ -15,6 +17,14 @@ function Schedule() {
     checkDevice();
     window.addEventListener("resize", checkDevice);
     return () => window.removeEventListener("resize", checkDevice);
+  }, []);
+
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true, offset: 100 });
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
 
   const loadExcel = async () => {
@@ -37,7 +47,7 @@ function Schedule() {
   };
 
   return (
-    <div className="schedule-container">
+    <div data-aos="fade-up" className="schedule-container">
       <p className="news-section-p1">Darslar jadvali</p>
       <p className="news-section-p2">
         Sinf va haftaning kuni bo'yicha darslar jadvali

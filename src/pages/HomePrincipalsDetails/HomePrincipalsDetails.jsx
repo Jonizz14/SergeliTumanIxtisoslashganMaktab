@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import "/src/pages/TeachersDetails/TeachersDetails.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function HomePrincipalsDetails() {
     const { id } = useParams();
@@ -34,6 +36,14 @@ function HomePrincipalsDetails() {
         fetchData();
     }, [id]);
 
+    useEffect(() => {
+        AOS.init({ duration: 1000, once: true, offset: 100 });
+    }, []);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     if (!person) {
         return (
             <div className="teacherdetails">
@@ -46,7 +56,7 @@ function HomePrincipalsDetails() {
     }
 
     return (
-        <div className="teacherdetails">
+        <div data-aos="fade-up" className="teacherdetails">
             <div className="breadcrumb">
                 <Link to="/" className="breadcrumb-link">Bosh sahifa</Link>
                 <span className="breadcrumb-separator">/</span>

@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import "./contact.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Contact = () => {
     const form = useRef();
@@ -9,17 +11,25 @@ const Contact = () => {
         console.log("Form yuborildi!");
     };
 
+    useEffect(() => {
+        AOS.init({ duration: 1000, once: true, offset: 100 });
+    }, []);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <>
-            <div className="text-align-center">
+            <div data-aos="fade-up" className="text-align-center">
                 <p className="news-section-p1">Biz bilan bog'lanish</p>
                 <p className="news-section-p2">
                     Savol va takliflaringiz bo'lsa, bemalol murojaat qiling!
                 </p>
             </div>
-            <div className="contact-page">
+            <div data-aos="fade-up" className="contact-page">
 
-                <div className="contact-container">
+                <div data-aos="fade-up" className="contact-container">
                     <div className="contact-info">
                         <p>
                             <strong>Telefon:</strong> <br /> +998 98 989 99 99
@@ -41,7 +51,7 @@ const Contact = () => {
                         </p>
                     </div>
 
-                    <form ref={form} onSubmit={handleSubmit} className="contact-form">
+                    <form data-aos="fade-up" ref={form} onSubmit={handleSubmit} className="contact-form">
                         <h3>Savolingiz bormi?</h3>
 
                         <input
@@ -75,7 +85,7 @@ const Contact = () => {
                         <button type="submit">Yuborish</button>
                     </form>
 
-                    <div className="contact-map">
+                    <div data-aos="fade-up" className="contact-map">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d551.5804135650701!2d69.2218422139766!3d41.210502803385936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae61c403191f6d%3A0xc8199e959d144b2e!2sSergeli%20ixtisoslashtirilgan%20maktab!5e0!3m2!1sru!2s!4v1758799393697!5m2!1sru!2s"
                             width="100%"

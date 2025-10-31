@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./TalentedStudents.css";
 import { useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function TalentedStudents() {
   const [students, setStudents] = useState([]);
@@ -25,7 +27,6 @@ function TalentedStudents() {
     return fullName.includes(searchTerm.toLowerCase());
   });
 
-
   const handleKeyDown = (e, student) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -33,9 +34,17 @@ function TalentedStudents() {
     }
   };
 
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true, offset: 100 });
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
-      <section className="main-section">
+      <section data-aos="fade-up" className="main-section">
         <div className="talented-section">
           <p className="talented-section-p1">Iqtidorli o‘quvchilar</p>
           <p className="talented-section-p2">
@@ -62,7 +71,7 @@ function TalentedStudents() {
           </form>
         </div>
 
-        <section className="talented-grid">
+        <section data-aos="fade-up" className="talented-grid">
           {filteredStudents.length > 0 ? (
             filteredStudents.map((student) => (
               <div

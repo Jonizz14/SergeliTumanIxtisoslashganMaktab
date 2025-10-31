@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "/src/pages/Addition/addition.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Addition() {
     const [additions, setAdditions] = useState([]);
@@ -25,8 +27,16 @@ function Addition() {
         item.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    useEffect(() => {
+        AOS.init({ duration: 1000, once: true, offset: 100 });
+    }, []);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
-        <div className="addition-section">
+        <div data-aos="fade-up" className="addition-section">
             <p className="addition-section-p1">To'garaklar</p>
             <p className="addition-section-p2">
                 Maktabimizdagi tashkil etilgan to'garaklar
@@ -42,7 +52,7 @@ function Addition() {
                 />
             </form>
 
-            <div className="addition-list">
+            <div data-aos="fade-up" className="addition-list">
                 {filteredAdditions.map((item) => (
                     <div key={item.id} className="addition-card">
                         <img src={item.image} alt={item.name} />

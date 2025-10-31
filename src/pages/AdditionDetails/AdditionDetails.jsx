@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import "/src/pages/AdditionDetails/AdditionDetails.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function AdditionDetails() {
     const location = useLocation();
@@ -8,6 +10,10 @@ function AdditionDetails() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+    }, []);
+
+    useEffect(() => {
+        AOS.init({ duration: 1000, once: true, offset: 100 });
     }, []);
 
     if (!addition) {
@@ -22,7 +28,7 @@ function AdditionDetails() {
     }
 
     return (
-        <div className="additiondetails">
+        <div data-aos="fade-up" className="additiondetails">
             <div className="breadcrumb">
                 <Link to="/addition" className="breadcrumb-link">To‘garaklar</Link>
                 <span className="breadcrumb-separator">/</span>
