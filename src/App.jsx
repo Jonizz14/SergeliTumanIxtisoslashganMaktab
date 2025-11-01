@@ -6,6 +6,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import React from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Layout from "./components/Layout/layout";
 import Loader from "./components/Loader/Loader";
@@ -134,7 +136,7 @@ function App() {
         <Route path="/addition" element={<Layout><Addition /></Layout>} />
         <Route path="*" element={<Layout><Noutfound /></Layout>} />
         <Route path="/talentedstudents" element={<Layout><TalentedStudents /></Layout>} />
-        
+
       </Routes>
       <Chat />
     </>

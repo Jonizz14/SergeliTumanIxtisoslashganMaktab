@@ -56,7 +56,7 @@ function HomePrincipalsDetails() {
     }
 
     return (
-        <div data-aos="fade-up" className="teacherdetails">
+        <div className="teacherdetails">
             <div className="breadcrumb">
                 <Link to="/" className="breadcrumb-link">Bosh sahifa</Link>
                 <span className="breadcrumb-separator">/</span>

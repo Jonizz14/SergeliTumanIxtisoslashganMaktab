@@ -34,16 +34,19 @@ export default function Chat() {
     }, []);
 
     useEffect(() => {
-        if (open) {
-            document.body.style.overflow = "hidden"; 
-        } else {
-            document.body.style.overflow = "auto"; 
+        if (!isMobile) {
+            document.body.style.overflow = open ? "hidden" : "auto";
         }
+    }, [open, isMobile]);
 
-        return () => {
-            document.body.style.overflow = "auto"; 
-        };
-    }, [open]);
+    useEffect(() => {
+        if (isMobile) {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+                window.dispatchEvent(new Event('resize'));
+            }, 100);
+        }
+    }, [isMobile]);
 
     useEffect(() => {
         const savedMessages = localStorage.getItem("chatMessages");

@@ -288,7 +288,7 @@ function Home() {
           </div>
         </section>
       </div>
-      
+
       <section data-aos="fade-up" className="bg-gray-900 py-14">
         <div className="swiper-title-bottom">
           <p className="swiper-botto-p">

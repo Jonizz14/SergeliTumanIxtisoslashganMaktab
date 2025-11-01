@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  z-index: 9999;
+  z-index: 4;
   font-family: "Inter", sans-serif;
 }
 .chat-container {
@@ -16,6 +16,7 @@
   overflow: hidden;
   position: relative;
   transform-origin: bottom right;
+  z-index: 4;
 }
 
 @keyframes softGlow {
@@ -606,5 +607,12 @@
     padding: 14px 15px;
     font-size: 16px;
     min-width: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .chat-container {
+    transform: none !important;
+    animation: none !important;
   }
 }

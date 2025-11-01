@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { FiMenu, FiX } from "react-icons/fi"; 
+import { motion, AnimatePresence } from "framer-motion";
 import "./header.css";
 import Logo from "./logo.svg";
 
@@ -7,8 +9,8 @@ function Header() {
   const [open, setOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
   const [activityDropdownOpen, setActivityDropdownOpen] = useState(false);
-  const [showHeader, setShowHeader] = useState(true); // 👈 qo‘shildi
-  const [lastScrollY, setLastScrollY] = useState(0); // 👈 qo‘shildi
+  const [showHeader, setShowHeader] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const aboutDropdownRef = useRef(null);
   const activityDropdownRef = useRef(null);
@@ -61,24 +63,16 @@ function Header() {
       ) {
         setActivityDropdownOpen(false);
       }
-
-      if (
-        open &&
-        !event.target.closest(".menu-btn") &&
-        !event.target.closest(".mobile-nav-links")
-      ) {
-        setOpen(false);
-      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [aboutDropdownOpen, activityDropdownOpen, open]);
+  }, [aboutDropdownOpen, activityDropdownOpen]);
 
   return (
-    <header className={`header ${showHeader ? "visible" : "hidden"}`}> 
+    <header className={`header ${showHeader ? "visible" : "hidden"}`}>
       <nav className="nav-container">
-        <NavLink to={"/"} onClick={closeAllDropdowns}>
+        <NavLink to="/" onClick={closeAllDropdowns}>
           <div className="header-logo-div">
             <img className="logo-website" src={Logo} alt="logo" />
             <div>
@@ -88,7 +82,7 @@ function Header() {
           </div>
         </NavLink>
 
-        <div className="nav-right-section">
+        <div className="nav-right-section desktop-menu">
           <ul className="nav-links">
             <li>
               <NavLink className="nav-links-home" to="/" end onClick={closeAllDropdowns}>
@@ -126,27 +120,48 @@ function Header() {
               <NavLink to="/contact" onClick={closeAllDropdowns}>Bog'lanish</NavLink>
             </li>
           </ul>
-
-          <button
-            className={`menu-btn ${open ? "open" : ""}`}
-            onClick={() => setOpen(!open)}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
         </div>
 
-        <ul className={`mobile-nav-links ${open ? "active" : ""}`}>
-          <li><NavLink to="/" end onClick={closeAllDropdowns}>Asosiy</NavLink></li>
-          <li><NavLink to="/news" onClick={closeAllDropdowns}>Yangiliklar</NavLink></li>
-          <li><NavLink to="/teachers" onClick={closeAllDropdowns}>Ustozlar</NavLink></li>
-          <li><NavLink to="/schedule" onClick={closeAllDropdowns}>Dars Jadvali</NavLink></li>
-          <li><NavLink to="/announcements" onClick={closeAllDropdowns}>E'lonlar</NavLink></li>
-          <li><NavLink to="/addition" onClick={closeAllDropdowns}>To'garaklar</NavLink></li>
-          <li><NavLink to="/talentedstudents" onClick={closeAllDropdowns}>O'quvchilar</NavLink></li>
-          <li><NavLink to="/contact" onClick={closeAllDropdowns}>Bog'lanish</NavLink></li>
-        </ul>
+        <div className="mobile-menu-btn">
+          <AnimatePresence mode="wait" initial={false}>
+            {open ? (
+              <motion.div
+                key="close"
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                onClick={() => setOpen(false)}
+              >
+                <FiX size={28} color="#fff" />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="menu"
+                initial={{ rotate: 90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: -90, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                onClick={() => setOpen(true)}
+              >
+                <FiMenu size={28} color="#0b1e70" />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        <div className={`mobile-sidebar ${open ? "open" : ""}`}>
+          <ul>
+            <li><NavLink to="/" end onClick={closeAllDropdowns}>Asosiy</NavLink></li>
+            <li><NavLink to="/news" onClick={closeAllDropdowns}>Yangiliklar</NavLink></li>
+            <li><NavLink to="/teachers" onClick={closeAllDropdowns}>Ustozlar</NavLink></li>
+            <li><NavLink to="/schedule" onClick={closeAllDropdowns}>Dars Jadvali</NavLink></li>
+            <li><NavLink to="/announcements" onClick={closeAllDropdowns}>E'lonlar</NavLink></li>
+            <li><NavLink to="/addition" onClick={closeAllDropdowns}>To'garaklar</NavLink></li>
+            <li><NavLink to="/talentedstudents" onClick={closeAllDropdowns}>O'quvchilar</NavLink></li>
+            <li><NavLink to="/contact" onClick={closeAllDropdowns}>Bog'lanish</NavLink></li>
+          </ul>
+        </div>
       </nav>
     </header>
   );
