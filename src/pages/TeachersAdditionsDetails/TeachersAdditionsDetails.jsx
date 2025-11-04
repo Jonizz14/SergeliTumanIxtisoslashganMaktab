@@ -50,7 +50,7 @@ function TeachersAdditionsDetails() {
     }
 
     return (
-        <div data-aos="fade-up" className="teacherdetails">
+        <div className="teacherdetails">
             <div className="breadcrumb">
                 <Link to="/addition" className="breadcrumb-link">To‘garaklar</Link>
                 <span className="breadcrumb-separator">/</span>

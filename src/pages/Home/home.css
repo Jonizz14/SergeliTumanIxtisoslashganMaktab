@@ -1122,10 +1122,14 @@
     gap: 20px;
   }
 
-  .feature-card-primary-card,
-  .feature-card-blur-card {
-    width: 90%;
+  .feature-card-primary-card {
+    width: 100%;
     padding: 14px 24px;
+  }
+
+  .feature-card-blur-card {
+    width: 100%;
+    padding: 14px 34px;
   }
 
   .home-section__title {

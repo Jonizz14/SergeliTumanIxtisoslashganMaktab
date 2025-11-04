@@ -24,9 +24,12 @@ function Home() {
   const [principals, setPrincipals] = useState([]);
   const [additions, setAdditions] = useState([]);
 
-  useEffect(() => {
-    AOS.init({ duration: 1000, once: true, offset: 100 });
-  }, []);
+  AOS.init({
+    duration: 1000,
+    once: true,
+    mirror: false,
+    offset: 100,
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);

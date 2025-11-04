@@ -40,6 +40,21 @@ export default function Chat() {
     }, [open, isMobile]);
 
     useEffect(() => {
+        if (isMobile && open) {
+            document.body.style.overflow = "hidden";
+            document.documentElement.style.overflow = "hidden";
+            document.body.style.height = "100vh";
+            document.documentElement.style.height = "100vh";
+        } else {
+            document.body.style.overflow = "auto";
+            document.documentElement.style.overflow = "auto";
+            document.body.style.height = "auto";
+            document.documentElement.style.height = "auto";
+        }
+    }, [isMobile, open]);
+
+
+    useEffect(() => {
         if (isMobile) {
             setTimeout(() => {
                 window.scrollTo(0, 0);
@@ -162,6 +177,18 @@ export default function Chat() {
     const rateMessage = (messageId, isPositive) => {
         setFeedback(prev => ({ ...prev, [messageId]: isPositive ? "like" : "dislike" }));
     };
+
+    function toggleChat() {
+        const chat = document.querySelector('.chat-container');
+        if (chat.classList.contains('expanded')) {
+            chat.classList.remove('expanded');
+            chat.classList.add('closing');
+            setTimeout(() => chat.classList.remove('closing'), 400);
+        } else {
+            chat.classList.add('expanded');
+        }
+    }
+
 
     return (
         <div className={`chat-wrapper ${open ? "open" : ""}`}>

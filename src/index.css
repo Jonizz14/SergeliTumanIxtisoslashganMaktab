@@ -14,3 +14,30 @@
   width: 85%;
   margin: 0 auto;
 }
+
+.chat-wrapper,
+.chat-container {
+  position: fixed;
+  z-index: 9999 !important;
+}
+
+.nav-container,
+.navbar {
+  position: relative;
+  z-index: 1000;
+}
+
+.info,
+.welcome-container {
+  position: relative;
+  z-index: 1;
+}
+
+[data-aos] {
+  transform: none !important;
+  overflow: visible !important;
+}
+
+.hover-disabled *:hover {
+  transform: none !important;
+}

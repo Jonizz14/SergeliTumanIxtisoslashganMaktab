@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import "./contact.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
