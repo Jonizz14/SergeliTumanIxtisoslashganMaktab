@@ -17,26 +17,34 @@ export default function Chat() {
     const [copiedIndex, setCopiedIndex] = useState(null);
     const [feedback, setFeedback] = useState({});
     const [isMobile, setIsMobile] = useState(false);
+    const [showHelpModal, setShowHelpModal] = useState(false);
+
     const chatBoxRef = useRef(null);
     const intervalRef = useRef(null);
 
     useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
+        if (showHelpModal) {
+            document.body.style.overflow = "hidden";
+            document.documentElement.style.overflow = "hidden";
+            document.body.style.height = "100vh";
+            document.documentElement.style.height = "100vh";
+        } else {
+            document.body.style.overflow = open ? "hidden" : "auto";
+            document.documentElement.style.overflow = open ? "hidden" : "auto";
+            document.body.style.height = open ? "100vh" : "auto";
+            document.documentElement.style.height = open ? "100vh" : "auto";
+        }
+    }, [showHelpModal, open]);
 
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth <= 768);
         checkMobile();
-        window.addEventListener('resize', checkMobile);
-
-        return () => {
-            window.removeEventListener('resize', checkMobile);
-        };
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
     }, []);
 
     useEffect(() => {
-        if (!isMobile) {
-            document.body.style.overflow = open ? "hidden" : "auto";
-        }
+        if (!isMobile) document.body.style.overflow = open ? "hidden" : "auto";
     }, [open, isMobile]);
 
     useEffect(() => {
@@ -53,12 +61,11 @@ export default function Chat() {
         }
     }, [isMobile, open]);
 
-
     useEffect(() => {
         if (isMobile) {
             setTimeout(() => {
                 window.scrollTo(0, 0);
-                window.dispatchEvent(new Event('resize'));
+                window.dispatchEvent(new Event("resize"));
             }, 100);
         }
     }, [isMobile]);
@@ -85,17 +92,71 @@ export default function Chat() {
         setExpanded(false);
     };
 
-    const toggleExpand = () => {
-        setExpanded(!expanded);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-        setExpanded(false);
-    };
+    const toggleExpand = () => setExpanded(!expanded);
+    const handleClose = () => setOpen(false) && setExpanded(false);
 
     const sendMessage = async () => {
         if (!input.trim()) return;
+
+        const command = input.toLowerCase().trim();
+
+        if (["yordam", "help", "komanda ro'yxati", "buyruqlar", "komandalar", "yordam bergin"].includes(command)) {
+            setShowHelpModal(true);
+            setInput("");
+            return;
+        }
+
+        if (["chatni tozalash", "chatni o'chirish", "chatni tozalag'in", "chatni o'chirgin"].includes(command)) {
+            setMessages([]);
+            setFeedback({});
+            setShowWelcome(true);
+            setInput("");
+            localStorage.removeItem("chatMessages");
+            localStorage.removeItem("chatFeedback");
+            return;
+        }
+
+        if (command.includes("asosiy") && command.includes("sahifa")) {
+            window.location.href = "/";
+            setInput("");
+            return;
+        }
+        if ((command.includes("ustoz") || command.includes("o'qituvchi")) && command.includes("sahifa")) {
+            window.location.href = "/teachers";
+            setInput("");
+            return;
+        }
+        if (command.includes("yangilik") && command.includes("sahifa")) {
+            window.location.href = "/news";
+            setInput("");
+            return;
+        }
+        if (command.includes("e'lon") && command.includes("sahifa")) {
+            window.location.href = "/announcements";
+            setInput("");
+            return;
+        }
+        if (command.includes("to'garak") && command.includes("sahifa")) {
+            window.location.href = "/addition";
+            setInput("");
+            return;
+        }
+        if (command.includes("jadval") && command.includes("sahifa")) {
+            window.location.href = "/schedule";
+            setInput("");
+            return;
+        }
+        if (command.includes("iste'dodli") && command.includes("sahifa")) {
+            window.location.href = "/talentedstudents";
+            setInput("");
+            return;
+        }
+        if (command.includes("komanda") && command.includes("sahifa")) {
+            window.location.href = "/ourcommand";
+            setInput("");
+            return;
+        }
+
         if (showWelcome) setShowWelcome(false);
         if (intervalRef.current) clearInterval(intervalRef.current);
 
@@ -112,33 +173,14 @@ export default function Chat() {
             const response = await ai.models.generateContent({
                 model: "gemini-2.5-flash",
                 contents: [
-                    {
-                        role: "model",
-                        parts: [
-                            {
-                                text: `Siz Sergeli tumanidagi ixtisoslashtirilgan maktabimiz bo'yicha yordam beradigan AI siz.
-                                       Bizning maktabimizda 500 dan ortiq o'quvchi, 50 dan ortiq ustozlar, 20 dan ortiq sinflar mavjud.
-                                       Manzilimiz: Sergeli tumani, Nilufar MFY, Sergeli 2-mavzesi, 64A-uy.
-                                       Maktabda Mock testlar, Zakovatlar va turli olimpiadalar o'tadi.
-                                       Foydalanuvchiga salom aytish va maktab haqida savollariga yordam berish kerak.maktabda eng zo'r ustoz maftuna saidova matematika fani oqutuvchsi.Bu saytni Jahongir To'xtayev va Jabborov Adham yaratgan ular frontend va UI/UX qismini yozgan.`
-                            }
-                        ]
-                    },
+                    { role: "model", parts: [{ text: "Siz Sergeli tumanidagi ixtisoslashtirilgan maktabimiz bo'yicha yordam beradigan AI siz. Bizning maktabimizda 500 dan ortiq o'quvchi, 50 dan ortiq ustozlar, 20 dan ortiq sinflar mavjud. Manzilimiz: Sergeli tumani, Nilufar MFY, Sergeli 2-mavzesi, 64A-uy. Maktabda Mock testlar, Zakovatlar va turli olimpiadalar o'tadi. Foydalanuvchiga salom aytish va maktab haqida savollariga yordam berish kerak.maktabda eng zo'r ustoz maftuna saidova matematika fani oqutuvchsi.Bu saytni Jahongir To'xtayev va Jabborov Adham yaratgan ular frontend va UI/UX qismini yozgan." }] },
                     { role: "user", parts: [{ text: currentInput }] }
                 ]
             });
 
             let botText = response.text;
-
-            const dislikedMessages = Object.entries(feedback)
-                .filter(([_, v]) => v === "dislike")
-                .map(([k]) => k);
-
-            if (dislikedMessages.some(id => botText.includes(messages.find(m => m.id == id)?.text))) {
-                botText = "Siz so'ragan mavzuda avval dislike berilgan javob. Iltimos boshqa savol yozing.";
-            }
-
             let index = 0;
+
             setMessages(prev => {
                 const newMessages = [...prev];
                 const lastIndex = newMessages.findIndex(m => m.id === aiMessageId);
@@ -179,16 +221,15 @@ export default function Chat() {
     };
 
     function toggleChat() {
-        const chat = document.querySelector('.chat-container');
-        if (chat.classList.contains('expanded')) {
-            chat.classList.remove('expanded');
-            chat.classList.add('closing');
-            setTimeout(() => chat.classList.remove('closing'), 400);
+        const chat = document.querySelector(".chat-container");
+        if (chat.classList.contains("expanded")) {
+            chat.classList.remove("expanded");
+            chat.classList.add("closing");
+            setTimeout(() => chat.classList.remove("closing"), 400);
         } else {
-            chat.classList.add('expanded');
+            chat.classList.add("expanded");
         }
     }
-
 
     return (
         <div className={`chat-wrapper ${open ? "open" : ""}`}>
@@ -206,6 +247,11 @@ export default function Chat() {
                         <div className="chat-header">
                             <h1>STIM AI</h1>
                             <div className="header-buttons">
+                                <div className="help-btn-wrapper">
+                                    <button className="help-btn" onClick={() => setShowHelpModal(true)}>
+                                        ?
+                                    </button>
+                                </div>
                                 {!isMobile && (
                                     <button className="expand-btn" onClick={toggleExpand} title={expanded ? "Kichiklashtirish" : "Kattalashtirish"}>
                                         {expanded ? <FiMinimize2 size={16} /> : <FiMaximize2 size={16} />}
@@ -262,6 +308,30 @@ export default function Chat() {
                             />
                             <button onClick={sendMessage} disabled={loading}>Yuborish</button>
                         </div>
+
+                        {showHelpModal && (
+                            <div className="help-modal-overlay" onClick={() => setShowHelpModal(false)}>
+                                <div className="help-modal" onClick={e => e.stopPropagation()}>
+                                    <div className="help-modal-header">
+                                        <h2>Yordam</h2>
+                                        <button className="help-close-btn" onClick={() => setShowHelpModal(false)}><FiX /></button>
+                                    </div>
+                                    <div className="help-modal-content">
+                                        <ul>
+                                            <li>Asosiy sahifa ga o'tish: "Asosiy sahifa", "Bosh sahifa", "Uy sahifasi"</li>
+                                            <li>Ustozlar sahifasi ga o'tish: "Ustozlar sahifasi", "O'qituvchilar sahifasi"</li>
+                                            <li>Yangiliklar sahifasi ga o'tish: "Yangiliklar sahifasi", "Maktab yangiliklari"</li>
+                                            <li>E'lonlar sahifasi ga o'tish: "E'lonlar sahifasi"</li>
+                                            <li>To'garaklar sahifasi ga o'tish: "To'garaklar sahifasi", "Maktab to'garaklari"</li>
+                                            <li>Jadval sahifasi ga o'tish: "Jadval sahifasi", "Maktab jadvali"</li>
+                                            <li>Bizning komanda sahifasi ga o'tish: "Komanda sahifasi", "Bizning komanda"</li>
+                                            <li>Iste'dodli o'quvchilar sahifasi ga o'tish: "Iste'dodli o'quvchilar sahifasi", "Iste'dodli o'quvchilar"</li>
+                                            <li>Chatni tozalash: "Chatni tozalash", "Chatni o'chirish"</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </>
                 )}
             </div>

@@ -185,3 +185,18 @@
         height: 200px;
     }
 }
+
+.anons-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 20px;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.anons-image-wrapper {
+    position: relative;
+}
