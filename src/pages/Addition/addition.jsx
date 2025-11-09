@@ -67,7 +67,7 @@ function Addition() {
             </p>
 
             <div className="addition-controls">
-                <form className="form" onSubmit={(e) => e.preventDefault()}>
+                <form className="form-addition" onSubmit={(e) => e.preventDefault()}>
                     <input
                         className="input"
                         placeholder="To‘garaklarni qidirish..."
@@ -78,10 +78,10 @@ function Addition() {
                 </form>
 
                 <button
-                    className={`bookmark-filter-btn ${filteredAdditions.length && bookmarked.length ? "active" : ""}`}
+                    className={`bookmark-toggle ${showOnlyBookmarked ? "active" : ""}`}
                     onClick={() => setShowOnlyBookmarked((prev) => !prev)}
                 >
-                    {showOnlyBookmarked ? <BsBookmarkFill size={22} /> : <BsBookmark size={22} />}
+                    {showOnlyBookmarked ? <BsBookmarkFill size={20} /> : <BsBookmark size={20} />}
                 </button>
 
             </div>

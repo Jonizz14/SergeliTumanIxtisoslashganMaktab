@@ -78,8 +78,16 @@
 }
 
 .anons-card:hover {
-    transform: translateY(-6px) scale(1.02) rotateX(2deg);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px) scale(1.02) rotateX(2deg);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Disable hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .anons-card:hover {
+    transform: none;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  }
 }
 
 .anons-card img {

@@ -109,6 +109,7 @@ header.visible {
   width: 100%;
 }
 
+
 .nav-links li a.active {
   color: #1e3a8a;
   font-weight: 600;
@@ -202,9 +203,11 @@ header.visible {
   width: 100%;
 }
 
+
 .dropdown-menu li:hover {
   background: #f3f4f6;
 }
+
 
 .arrow {
   border: solid #4b5563;
@@ -338,10 +341,21 @@ header.visible {
 }
 
 .mobile-menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   display: none;
-  color: #b6b7d3;
+  width: 56px; 
+  height: 56px;
+  font-size: 30px;
+  padding: 10px 14px;
+  color: #ffffff;
+  background: rgba(255,255,255,0.12); 
+  border-radius: 12px; 
   cursor: pointer;
-  z-index: 6;
+  z-index: 9999;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .mobile-menu-btn {

@@ -3,6 +3,8 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .welcome-swiper,
@@ -73,6 +75,16 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
+/* Disable hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .leadership-director:hover {
+    transform: none;
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+}
+
 .director-img {
   width: 280px;
   height: 320px;
@@ -135,6 +147,16 @@
   box-shadow:
     0 15px 30px rgba(0, 0, 0, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Disable hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .leadership-principal:hover {
+    transform: none;
+    box-shadow:
+      0 15px 35px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
 }
 
 .principal-img {
@@ -599,6 +621,14 @@
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
 }
 
+/* Disable hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .benefit-card:hover {
+    transform: none;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
+}
+
 .benefit-card-icon {
   width: 65px;
   height: 65px;
@@ -835,6 +865,14 @@
 .home-card:hover {
   transform: translateY(-6px) scale(1.02) rotateX(2deg);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Disable hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .home-card:hover {
+    transform: none;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  }
 }
 
 .home-card__img {

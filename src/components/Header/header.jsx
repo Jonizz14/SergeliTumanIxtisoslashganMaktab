@@ -11,7 +11,6 @@ function Header() {
   const [activityDropdownOpen, setActivityDropdownOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-
   const aboutDropdownRef = useRef(null);
   const activityDropdownRef = useRef(null);
 
@@ -42,7 +41,8 @@ function Header() {
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    // Add passive listener for better performance
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
@@ -127,9 +127,7 @@ function Header() {
             {open ? (
               <motion.div
                 key="close"
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
+                exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
                 onClick={() => setOpen(false)}
               >
@@ -138,9 +136,7 @@ function Header() {
             ) : (
               <motion.div
                 key="menu"
-                initial={{ rotate: 90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: -90, opacity: 0 }}
+                exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
                 onClick={() => setOpen(true)}
               >

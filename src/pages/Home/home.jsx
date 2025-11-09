@@ -29,6 +29,7 @@ function Home() {
     once: true,
     mirror: false,
     offset: 100,
+    disable: window.innerWidth <= 768 ? true : false,
   });
 
   useEffect(() => {

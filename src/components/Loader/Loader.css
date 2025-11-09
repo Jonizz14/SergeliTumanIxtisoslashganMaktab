@@ -9,12 +9,15 @@
   z-index: 9999;
   gap: 20px;
   overflow: hidden;
+  will-change: opacity;
+  transform: translateZ(0);
 }
 
 #fade-up {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeUp 0.8s ease forwards;
+  will-change: opacity, transform;
 }
 
 #fade-up:nth-of-type(1) {
@@ -66,6 +69,8 @@
   position: relative;
   overflow: hidden;
   margin-top: 10px;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .loader::before {

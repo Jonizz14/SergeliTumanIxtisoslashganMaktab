@@ -11,8 +11,74 @@
 }
 
 .container {
-  width: 85%;
+  width: 95%;
   margin: 0 auto;
+  padding: 0 10px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 90%;
+    padding: 0 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    width: 85%;
+    padding: 0 20px;
+  }
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media screen and (max-width: 767px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  button, a, input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 .chat-wrapper,
@@ -34,8 +100,14 @@
 }
 
 [data-aos] {
-  transform: none !important;
+  transform: translate(0) !important;
   overflow: visible !important;
+}
+
+@media (max-width: 768px) {
+  [data-aos] {
+    transform: translate(0) !important;
+  }
 }
 
 .hover-disabled *:hover {

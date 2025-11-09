@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IoTimeOutline } from "react-icons/io5";
 import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
 import "/src/pages/Announcements/announcements.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -9,6 +8,7 @@ import "aos/dist/aos.css";
 function Announcements() {
   const [anons, setAnons] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [showOnlyBookmarked, setShowOnlyBookmarked] = useState(false);
 
   const [bookmarked, setBookmarked] = useState(() => {
     return JSON.parse(localStorage.getItem("bookmarkedNews")) || [];
@@ -17,8 +17,6 @@ function Announcements() {
   useEffect(() => {
     localStorage.setItem("bookmarkedNews", JSON.stringify(bookmarked));
   }, [bookmarked]);
-
-  const [sortOption, setSortOption] = useState("all");
 
   useEffect(() => {
     const fetchAnons = async () => {
@@ -47,19 +45,11 @@ function Announcements() {
     );
   };
 
-  let filteredAnons = anons.filter((item) =>
-    item.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  if (sortOption === "bookmarked") {
-    filteredAnons = filteredAnons.filter((item) =>
-      bookmarked.includes(item.id)
-    );
-  } else if (sortOption === "recent") {
-    filteredAnons = [...filteredAnons].sort(
-      (a, b) => new Date(b.time) - new Date(a.time)
-    );
-  }
+  const filteredAnons = anons
+    .filter((item) =>
+      item.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .filter((item) => (showOnlyBookmarked ? bookmarked.includes(item.id) : true));
 
   return (
     <div data-aos="fade-up" className="anons-section">
@@ -68,7 +58,7 @@ function Announcements() {
         Maktabimizdagi eng so‘nggi anonslar va xabarlar
       </p>
 
-      <div className="anons-controls">
+      <div className="addition-controls">
         <form className="anons-form" onSubmit={(e) => e.preventDefault()}>
           <input
             className="anons-input"
@@ -79,20 +69,17 @@ function Announcements() {
           />
         </form>
 
-        <select
-          className="sort-select"
-          value={sortOption}
-          onChange={(e) => setSortOption(e.target.value)}
+        <button
+          className={`bookmark-toggle ${showOnlyBookmarked ? "active" : ""}`}
+          onClick={() => setShowOnlyBookmarked((prev) => !prev)}
         >
-          <option value="all">Barchasi</option>
-          <option value="bookmarked">Faqat saqlanganlar</option>
-          <option value="recent">Eng yangilari</option>
-        </select>
+          {showOnlyBookmarked ? <BsBookmarkFill size={20} /> : <BsBookmark size={20} />}
+        </button>
       </div>
 
       <div data-aos="fade-up" className="anons-list">
         {filteredAnons.map((item) => (
-          <div key={item.id || item.title} className="anons-card">
+          <div key={item.id} className="anons-card">
             <div className="anons-image-wrapper">
               <img src={item.image} alt={item.title} />
               <button

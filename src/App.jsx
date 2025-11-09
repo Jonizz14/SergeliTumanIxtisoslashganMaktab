@@ -83,6 +83,11 @@ function App() {
     };
 
     const checkNetworkSpeed = () => {
+      // Skip network speed check on mobile for better performance
+      if (window.innerWidth <= 768) {
+        return Promise.resolve("fast");
+      }
+
       const start = performance.now();
       return fetch("https://via.placeholder.com/50x50.png?rand=" + Math.random(), {
         cache: "no-cache",
@@ -100,6 +105,10 @@ function App() {
       let minDelay = 1000;
       if (speed === "medium") minDelay = 1800;
       if (speed === "slow") minDelay = 3000;
+
+      if (window.innerWidth <= 768) {
+        minDelay = Math.min(minDelay, 1500);
+      }
 
       setTimeout(() => {
         setLoading(false);
