@@ -193,7 +193,6 @@ export default function Chat() {
 
         const handleShortcut = (e) => {
 
-            // Cmd+C (Mac) yoki Ctrl+C (Windows)
             if ((isMac && e.metaKey && e.key === "c") || (!isMac && e.ctrlKey && e.key === "c")) {
                 e.preventDefault();
                 toggleChatOpen();

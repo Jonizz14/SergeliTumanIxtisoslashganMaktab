@@ -100,7 +100,6 @@ input:not(:placeholder-shown)~.reset {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
-/* Disable hover effects on touch devices */
 @media (hover: none) and (pointer: coarse) {
   .news-card:hover {
     transform: none;

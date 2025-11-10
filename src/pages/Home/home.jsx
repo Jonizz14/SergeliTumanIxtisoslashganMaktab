@@ -74,9 +74,9 @@ function Home() {
       requestAnimationFrame(update);
     };
 
-    animate(setStudents, 500);
-    animate(setTeachers, 50);
-    animate(setClasses, 20);
+    animate(setStudents, 540);
+    animate(setTeachers, 56);
+    animate(setClasses, 24);
   }, [])
 
   const images = [
@@ -181,7 +181,7 @@ function Home() {
             <p className="section-div-card-icon">
               <LuGraduationCap size={30} />
             </p>
-            <p className="section-div-card-p1">{students} +</p>
+            <p className="section-div-card-p1">{students}</p>
             <p className="section-div-card-p2">O'quvchilar</p>
           </div>
 
@@ -189,7 +189,7 @@ function Home() {
             <p className="section-div-card-icon">
               <FiUsers size={30} />
             </p>
-            <p className="section-div-card-p1">{teachers} +</p>
+            <p className="section-div-card-p1">{teachers}</p>
             <p className="section-div-card-p2">Ustozlar</p>
           </div>
 
@@ -197,7 +197,7 @@ function Home() {
             <p className="section-div-card-icon">
               <FiBookOpen size={30} />
             </p>
-            <p className="section-div-card-p1">{classes} +</p>
+            <p className="section-div-card-p1">{classes}</p>
             <p className="section-div-card-p2">Sinflar</p>
           </div>
         </div>
