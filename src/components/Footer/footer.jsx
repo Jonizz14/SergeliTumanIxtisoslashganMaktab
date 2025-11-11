@@ -54,7 +54,7 @@ function Footer() {
           <div className="footer-col">
             <h3>Sahifalar</h3>
             <Link to="/" className="footer-link">
-              Asosiy
+              Bosh sahifa
             </Link>
             <Link to="/news" className="footer-link">
               Yangiliklar
