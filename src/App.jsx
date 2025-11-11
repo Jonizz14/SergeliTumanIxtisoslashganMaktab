@@ -23,6 +23,8 @@ import OurCommand from "./pages/OurCommand/OurCommand";
 import Contact from "./pages/Contact/contact";
 import Chat from "./components/Chat/Chat";
 import TalentedStudents from "./pages/TalentedS/TalentedStudents";
+import AboutSchool from "./pages/AboutSchool/AboutSchool";
+import Principals from "./pages/Principals/Principals";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -141,6 +143,8 @@ function App() {
         <Route path="/addition" element={<Layout><Addition /></Layout>} />
         <Route path="*" element={<Layout><Noutfound /></Layout>} />
         <Route path="/talentedstudents" element={<Layout><TalentedStudents /></Layout>} />
+        <Route path="/aboutschool" element={<Layout><AboutSchool /></Layout>} />
+        <Route path="/principals" element={<Layout><Principals /></Layout>} />
 
       </Routes>
       <Chat />
