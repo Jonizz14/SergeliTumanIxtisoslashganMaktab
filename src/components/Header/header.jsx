@@ -97,8 +97,8 @@ function Header() {
               <span className={`arrow ${aboutDropdownOpen ? "up" : ""}`}></span>
             </button>
             <ul className={`dropdown-menu ${aboutDropdownOpen ? "show" : ""}`}>
-              <li><NavLink to="/teachers" onClick={closeAllDropdowns}>Maktab tarixi</NavLink></li>
-              <li><NavLink to="/talentedstudents" onClick={closeAllDropdowns}>Rahbariyat</NavLink></li>
+              <li><NavLink to="/aboutschool" onClick={closeAllDropdowns}>Maktab tarixi</NavLink></li>
+              <li><NavLink to="/principals" onClick={closeAllDropdowns}>Rahbariyat</NavLink></li>
             </ul>
           </div>
 
@@ -157,7 +157,9 @@ function Header() {
             <li><NavLink to="/announcements" onClick={closeAllDropdowns}>E'lonlar</NavLink></li>
             <li><NavLink to="/addition" onClick={closeAllDropdowns}>To'garaklar</NavLink></li>
             <li><NavLink to="/talentedstudents" onClick={closeAllDropdowns}>O'quvchilar</NavLink></li>
-            <li><NavLink to="/contact" onClick={closeAllDropdowns}>Bog'lanish</NavLink></li>
+            <li><NavLink to="/aboutschool" onClick={closeAllDropdowns}>Maktab Tarixi</NavLink></li>
+            <li><NavLink to="/principals" onClick={closeAllDropdowns}>Rahbariyat</NavLink></li>
+             <li><NavLink to="/contact" onClick={closeAllDropdowns}>Bog'lanish</NavLink></li>
           </ul>
         </div>
       </nav>
