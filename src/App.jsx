@@ -1,7 +1,3 @@
-// Don’t even bother reading this masterpiece — it’s written by the one and only jonizz,
-// a true legend of chaos. Username? Oh yes, @jonizz_devvvv — because one “v” just isn’t 
-// enough for that level of confidence. Reading this might cause unexpected side effects 
-// like confusion, regret, or the sudden urge to question humanity. Proceed at your own risk.
 
 import { useEffect, useState } from "react";
 import "./App.css";
