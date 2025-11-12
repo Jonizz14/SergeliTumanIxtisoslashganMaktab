@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiX, FiChevronDown } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import "./header.css";
 import Logo from "./logo.svg";
@@ -9,6 +9,8 @@ function Header() {
   const [open, setOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
   const [activityDropdownOpen, setActivityDropdownOpen] = useState(false);
+  const [mobileActivityDropdownOpen, setMobileActivityDropdownOpen] = useState(false);
+  const [mobileAboutDropdownOpen, setMobileAboutDropdownOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const aboutDropdownRef = useRef(null);
@@ -24,9 +26,21 @@ function Header() {
     setAboutDropdownOpen(false);
   };
 
+  const toggleMobileActivityDropdown = () => {
+    setMobileActivityDropdownOpen(!mobileActivityDropdownOpen);
+    setMobileAboutDropdownOpen(false);
+  };
+
+  const toggleMobileAboutDropdown = () => {
+    setMobileAboutDropdownOpen(!mobileAboutDropdownOpen);
+    setMobileActivityDropdownOpen(false);
+  };
+
   const closeAllDropdowns = () => {
     setAboutDropdownOpen(false);
     setActivityDropdownOpen(false);
+    setMobileActivityDropdownOpen(false);
+    setMobileAboutDropdownOpen(false);
     setOpen(false);
   };
 
@@ -45,6 +59,19 @@ function Header() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
+
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [open]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -99,6 +126,7 @@ function Header() {
             <ul className={`dropdown-menu ${aboutDropdownOpen ? "show" : ""}`}>
               <li><NavLink to="/aboutschool" onClick={closeAllDropdowns}>Maktab tarixi</NavLink></li>
               <li><NavLink to="/principals" onClick={closeAllDropdowns}>Rahbariyat</NavLink></li>
+              <li><NavLink to="/scientificworks" onClick={closeAllDropdowns}>Ilmiy Ishlar</NavLink></li>
             </ul>
           </div>
 
@@ -151,15 +179,32 @@ function Header() {
         <div className={`mobile-sidebar ${open ? "open" : ""}`}>
           <ul>
             <li><NavLink to="/" end onClick={closeAllDropdowns}>Bosh sahifa</NavLink></li>
-            <li><NavLink to="/news" onClick={closeAllDropdowns}>Yangiliklar</NavLink></li>
-            <li><NavLink to="/teachers" onClick={closeAllDropdowns}>Ustozlar</NavLink></li>
-            <li><NavLink to="/schedule" onClick={closeAllDropdowns}>Dars Jadvali</NavLink></li>
-            <li><NavLink to="/announcements" onClick={closeAllDropdowns}>E'lonlar</NavLink></li>
-            <li><NavLink to="/addition" onClick={closeAllDropdowns}>To'garaklar</NavLink></li>
-            <li><NavLink to="/talentedstudents" onClick={closeAllDropdowns}>O'quvchilar</NavLink></li>
-            <li><NavLink to="/aboutschool" onClick={closeAllDropdowns}>Maktab Tarixi</NavLink></li>
-            <li><NavLink to="/principals" onClick={closeAllDropdowns}>Rahbariyat</NavLink></li>
-             <li><NavLink to="/contact" onClick={closeAllDropdowns}>Bog'lanish</NavLink></li>
+            <li>
+              <button className="mobile-dropdown-toggle" onClick={toggleMobileAboutDropdown}>
+                Maktab Haqida
+                <FiChevronDown className={`mobile-chevron ${mobileAboutDropdownOpen ? "up" : ""}`} />
+              </button>
+              <ul className={`mobile-dropdown-menu ${mobileAboutDropdownOpen ? "show" : ""}`}>
+                <li><NavLink to="/aboutschool" onClick={closeAllDropdowns}>Maktab Tarixi</NavLink></li>
+                <li><NavLink to="/principals" onClick={closeAllDropdowns}>Rahbariyat</NavLink></li>
+                <li><NavLink to="/scientificworks" onClick={closeAllDropdowns}>Ilmiy Ishlar</NavLink></li>
+                <li><NavLink to="/schedule" onClick={closeAllDropdowns}>Dars Jadvali</NavLink></li>
+              </ul>
+            </li>
+            <li>
+              <button className="mobile-dropdown-toggle" onClick={toggleMobileActivityDropdown}>
+                Maktab Faoliyati
+                <FiChevronDown className={`mobile-chevron ${mobileActivityDropdownOpen ? "up" : ""}`} />
+              </button>
+              <ul className={`mobile-dropdown-menu ${mobileActivityDropdownOpen ? "show" : ""}`}>
+                <li><NavLink to="/news" onClick={closeAllDropdowns}>Yangiliklar</NavLink></li>
+                <li><NavLink to="/announcements" onClick={closeAllDropdowns}>E'lonlar</NavLink></li>
+                <li><NavLink to="/addition" onClick={closeAllDropdowns}>To'garaklar</NavLink></li>
+                <li><NavLink to="/teachers" onClick={closeAllDropdowns}>Ustozlar</NavLink></li>
+                <li><NavLink to="/talentedstudents" onClick={closeAllDropdowns}>O'quvchilar</NavLink></li>
+              </ul>
+            </li>
+            <li><NavLink to="/contact" onClick={closeAllDropdowns}>Bog'lanish</NavLink></li>
           </ul>
         </div>
       </nav>

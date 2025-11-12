@@ -25,6 +25,7 @@ import Chat from "./components/Chat/Chat";
 import TalentedStudents from "./pages/TalentedS/TalentedStudents";
 import AboutSchool from "./pages/AboutSchool/AboutSchool";
 import Principals from "./pages/Principals/Principals";
+import ScientificWorks from "./pages/ScientificWorks/ScientificWorks";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -39,6 +40,9 @@ function App() {
     "/addition",
     "/contact",
     "/talentedstudents",
+    "/aboutschool",
+    "/principals",
+    "/scientificworks",
   ];
 
   useEffect(() => {
@@ -145,6 +149,7 @@ function App() {
         <Route path="/talentedstudents" element={<Layout><TalentedStudents /></Layout>} />
         <Route path="/aboutschool" element={<Layout><AboutSchool /></Layout>} />
         <Route path="/principals" element={<Layout><Principals /></Layout>} />
+        <Route path="/scientificworks" element={<Layout><ScientificWorks /></Layout>} />
 
       </Routes>
       <Chat />

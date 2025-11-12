@@ -14,6 +14,7 @@ const anons = [];
 const additions = [];
 const principals = [];
 const talentedStudents = [];
+const scientificWorks = [];
 
 
 principals.push({
@@ -154,6 +155,19 @@ for (let i = 1; i <= 10; i++) {
 }
 
 
+for (let i = 1; i <= 4; i++) {
+  scientificWorks.push({
+    id: i,
+    video: `https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_${i}mb.mp4`,
+    title: faker.lorem.words(3),
+    description: faker.lorem.sentence(10),
+    studentName: faker.person.fullName()
+  });
+}
+
+
+
+
 const db = {
   principals,
   teachers,
@@ -162,7 +176,8 @@ const db = {
   news,
   anons,
   additions,
-  talentedStudents, 
+  talentedStudents,
+  scientificWorks
 };
 
 fs.writeFileSync("db.json", JSON.stringify(db, null, 2), "utf-8");
