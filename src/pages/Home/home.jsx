@@ -111,7 +111,7 @@ function Home() {
 
         <div data-aos="fade-up" className="welcome-overlay">
           <div className="welcome-content">
-            <h1 className="welcome-title">Sergeli tuman ixtisoslashgan maktabiga xush kelibsiz</h1>
+            <h1 className="welcome-title">O‘zbekiston Respublikasi maktabgacha va maktab ta’limi vazirligi huzuridagi ixtisoslashtirilgan ta’lim muassalar agentligi tizimidagi Sergeli tuman ixtisoslashtirilgan maktabi</h1>
             <p className="welcome-subtitle">Kelajak uchun ta'lim</p>
 
             <div data-aos="fade-up" className="features-section">
@@ -174,6 +174,32 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <section data-aos="fade-up" className="gallery-section">
+        <div className="gallery-container">
+          <div className="gallery-item">
+            <img src="/src/pages/Home/banner2.png" alt="Rasm 1" />
+            <div className="overlay">
+              <p>Maktab ichki ko‘rinishi 1</p>
+            </div>
+          </div>
+
+          <div className="gallery-item">
+            <img src="/src/pages/Home/banner3.png" alt="Rasm 2" />
+            <div className="overlay">
+              <p>Maktab ichki ko‘rinishi 2</p>
+            </div>
+          </div>
+
+          <div className="gallery-item">
+            <img src="/src/pages/Home/banner.jpg" alt="Rasm 3" />
+            <div className="overlay">
+              <p>Maktab ichki ko‘rinishi 3</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       <section className="section">
         <div data-aos="fade-up" className="section-div">
@@ -255,43 +281,6 @@ function Home() {
           </div>
         </div>
       </section>
-      <div className="school-leadership-dashboard">
-        <section data-aos="fade-up" className="leadership-section">
-          <h2 className="leadership-title">Maktab Rahbariyati</h2>
-
-          {principals.length > 0 && (
-            <Link
-              to={`/principals/${principals[0].id}`}
-              state={{ person: principals[0] }}
-              className="leadership-director"
-              key={principals[0].id}
-            >
-              <img src={principals[0].photo} alt="Director" className="director-img" />
-              <h3 className="leadership-name">
-                {principals[0].firstName} {principals[0].lastName}
-              </h3>
-              <p className="leadership-position">{principals[0].position}</p>
-            </Link>
-          )}
-
-          <div className="leadership-principals">
-            {principals.slice(1).map((principal) => (
-              <Link
-                key={principal.id}
-                to={`/principals/${principal.id}`}
-                state={{ person: principal }}
-                className="leadership-principal"
-              >
-                <img src={principal.photo} alt="Principal" className="principal-img" />
-                <h4 className="principal-name">
-                  {principal.firstName} {principal.lastName}
-                </h4>
-                <p className="principal-position">{principal.position}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
-      </div>
 
       <section data-aos="fade-up" className="bg-gray-900 py-14">
         <div className="swiper-title-bottom">
@@ -440,6 +429,44 @@ function Home() {
           ))}
         </div>
       </section>
+
+      <div className="school-leadership-dashboard">
+        <section data-aos="fade-up" className="leadership-section">
+          <h2 className="leadership-title">Maktab Rahbariyati</h2>
+
+          {principals.length > 0 && (
+            <Link
+              to={`/principals/${principals[0].id}`}
+              state={{ person: principals[0] }}
+              className="leadership-director"
+              key={principals[0].id}
+            >
+              <img src={principals[0].photo} alt="Director" className="director-img" />
+              <h3 className="leadership-name">
+                {principals[0].firstName} {principals[0].lastName}
+              </h3>
+              <p className="leadership-position">{principals[0].position}</p>
+            </Link>
+          )}
+
+          <div className="leadership-principals">
+            {principals.slice(1).map((principal) => (
+              <Link
+                key={principal.id}
+                to={`/principals/${principal.id}`}
+                state={{ person: principal }}
+                className="leadership-principal"
+              >
+                <img src={principal.photo} alt="Principal" className="principal-img" />
+                <h4 className="principal-name">
+                  {principal.firstName} {principal.lastName}
+                </h4>
+                <p className="principal-position">{principal.position}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      </div>
     </>
   );
 }

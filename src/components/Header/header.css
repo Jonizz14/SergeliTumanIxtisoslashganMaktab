@@ -340,18 +340,64 @@ header.visible {
   border-bottom: 2px solid #fff;
 }
 
+.mobile-dropdown-toggle {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px auto;
+  text-align: left;
+  width: 170px;
+}
+
+.mobile-chevron {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.mobile-chevron.up {
+  transform: rotate(180deg);
+}
+
+.mobile-dropdown-menu {
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 10px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.mobile-dropdown-menu.show {
+  max-height: 400px;
+}
+
+.mobile-dropdown-menu li {
+  margin-bottom: 10px;
+}
+
+.mobile-dropdown-menu a {
+  font-size: 1rem;
+  color: #fff;
+}
+
 .mobile-menu-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   display: none;
-  width: 56px; 
+  width: 56px;
   height: 56px;
   font-size: 30px;
   padding: 10px 14px;
   color: #ffffff;
-  background: rgba(255,255,255,0.12); 
-  border-radius: 12px; 
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
   cursor: pointer;
   z-index: 9999;
   -webkit-tap-highlight-color: transparent;
