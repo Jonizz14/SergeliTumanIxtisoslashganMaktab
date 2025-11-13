@@ -7,12 +7,8 @@
 }
 
 .footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 2fr 1fr;
-    gap: 30px;
-    align-items: start;
+   display: flex;
+   justify-content: space-around;
 }
 
 .footer-logo-div {
@@ -55,7 +51,7 @@
 .footer-col {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 5px;
 }
 
 .footer-col h3 {
@@ -175,39 +171,50 @@
     .footer-container {
         grid-template-columns: 1fr 1fr;
     }
+
     .footer-flex {
         grid-template-columns: 1fr;
     }
+
     .footer-col h3 {
         font-size: 15px;
     }
+
     .footer-link {
         font-size: 13px;
     }
 }
 
 @media (max-width: 768px) {
-  .footer-container {
-      grid-template-columns: 1fr;
-      gap: 30px;
-      text-align: center;       
-      justify-items: center;    
-  }
+    .footer-container {
+        display: flex;
+        justify-content: space-between;
+    }
 
-  .footer-col,
-  .footer-col- {
-      align-items: center;      
-  }
+    .google-map {
+        width: 200px;
+        height: 200px;
+    }
 
-  .footer-socials {
-      justify-content: center;  
-  }
+    .footer-socials {
+        justify-content: center;
+    }
 
-  .footer-logo-div {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-  }
+    .footer-logo-div {
+        flex-direction: column;
+        align-items: start;
+        text-align: center;
+    }
+
+    .footer-col:nth-child(1) {
+        display: flex;
+    }
+
+    .footer-col- {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
 }
 
 
@@ -218,16 +225,20 @@
         text-align: center;
         gap: 8px;
     }
+
     .footer-socials {
         justify-content: center;
     }
+
     .footer-col {
         align-items: center;
         text-align: center;
     }
+
     .footer-col h3 {
         font-size: 14px;
     }
+
     .footer-link {
         font-size: 11px;
     }
@@ -236,18 +247,136 @@
 
 @media (max-width: 480px) {
     .footer-container {
-        gap: 20px;
+        display: flex;
+        justify-content: center;
     }
+
     .footer-logo-div div p:first-child {
         font-size: 14px;
     }
+
     .footer-logo-div div p:last-child {
         font-size: 11px;
     }
+
     .footer-col h3 {
         font-size: 13px;
     }
+
     .footer-link {
         font-size: 10px;
+    }
+
+    .foooter-col- {
+        display: flex;
+    }
+
+    .footer-socials a {
+        margin: 0px;
+        width: 20px;
+    }
+
+    .google-map {
+        width: 375px;
+        height: 200px;
+        margin: 0 auto;
+    }
+
+    .footer-col {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        align-items: start;
+    }
+
+    .footer-col h3 {
+        font-size: 16px;
+        margin-bottom: 5px;
+        font-weight: 600;
+        color: #1e3a8a;
+        position: relative;
+        padding-bottom: 8px;
+    }
+
+    .footer-col h3::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 2px;
+        background: #1e3a8a;
+        border-radius: 2px;
+    }
+
+    .footer-link {
+        font-size: 14px;
+        color: #4b5563;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 4px 0;
+        position: relative;
+        width: fit-content;
+    }
+
+    .footer-link::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: #1e3a8a;
+        transition: width 0.3s ease;
+    }
+
+    .footer-link:hover {
+        color: #1e3a8a;
+        padding-left: 8px;
+    }
+
+    .footer-link:hover::before {
+        width: 100%;
+    }
+
+    .footer-socials {
+        display: flex;
+        gap: 12px;
+        margin-top: 10px;
+    }
+
+    .footer-socials a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background: #f1f5f9;
+        color: #1e3a8a;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 16px;
+    }
+
+    .footer-socials a:hover {
+        background: #1e3a8a;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(30, 58, 138, 0.3);
+    }
+
+    .footer-col- {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: start;
+    }
+    .footer-flex{
+        display: none;
+    }
+    .google-map{
+        width: 150px;
+        height: 200px;
     }
 }
