@@ -18,7 +18,7 @@ const teamMembers = [
     id: 2,
     name: "Jabborov Adham",
     role: "Frontend",
-    bio: "Foydalanuvchi tajribasiga urg'u beradigan va dizayn tamoyillariga amal qiluvchi frontend muhandis",
+    bio: "React Texnalogiyasida ishlayman va UI/UX design, Asosan Javascript, Node.js va Json-Server, API hamda turli ma’lumotlar bazalari bilan integratsiya qilishni yoqtiraman Yangi loyihalarda ishlash va o‘rganishga doim tayyorman",
     img: "",
     github: "https://github.com/adhamjonjabborov07",
     telegram: "https://jabborov_0o7.t.me/",
@@ -106,7 +106,7 @@ export default function OurTeam() {
               <strong>G‘oya:</strong> UI/UX dizaynni amaliy o‘rganish
             </div>
             <div className="project-meta-item">
-              <strong>Texnologiyalar:</strong> React CSS Responsive Design
+              <strong>Texnologiyalar:</strong> React,CSS,JavaScript Responsive Design
             </div>
             <div className="project-meta-item">
               <strong>Reja:</strong> Loyihani keyinchalik real jamoaviy platformaga aylantirish
