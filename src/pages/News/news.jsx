@@ -101,7 +101,7 @@ function News() {
         {filteredNews.map((item) => (
           <div key={item.title} className="news-card">
             <div className="news-image-wrapper">
-              <img src={item.image} alt={item.title} />
+              <img src={item.mainImage} alt={item.title} />
               <button
                 className="bookmark-btn"
                 onClick={() => toggleBookmark(item.title)}

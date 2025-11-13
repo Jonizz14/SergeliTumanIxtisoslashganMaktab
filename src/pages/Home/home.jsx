@@ -389,7 +389,7 @@ function Home () {
           {news.slice(0, 3).map(item => (
             <div key={item.id} className='home-card'>
               <img
-                src={item.image}
+                src={item.mainImage}
                 alt={item.title}
                 className='home-card__img'
               />
@@ -493,52 +493,6 @@ function Home () {
           ))}
         </div>
       </section>
-
-      <div className='school-leadership-dashboard'>
-        <section data-aos='fade-up' className='leadership-section'>
-          <h2 className='leadership-title'>Maktab Rahbariyati</h2>
-
-          {principals.length > 0 && (
-            <Link
-              to={`/principals/${principals[0].id}`}
-              state={{ person: principals[0] }}
-              className='leadership-director'
-              key={principals[0].id}
-            >
-              <img
-                src={principals[0].photo}
-                alt='Director'
-                className='director-img'
-              />
-              <h3 className='leadership-name'>
-                {principals[0].firstName} {principals[0].lastName}
-              </h3>
-              <p className='leadership-position'>{principals[0].position}</p>
-            </Link>
-          )}
-
-          <div className='leadership-principals'>
-            {principals.slice(1).map(principal => (
-              <Link
-                key={principal.id}
-                to={`/principals/${principal.id}`}
-                state={{ person: principal }}
-                className='leadership-principal'
-              >
-                <img
-                  src={principal.photo}
-                  alt='Principal'
-                  className='principal-img'
-                />
-                <h4 className='principal-name'>
-                  {principal.firstName} {principal.lastName}
-                </h4>
-                <p className='principal-position'>{principal.position}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
-      </div>
     </>
   )
 }

@@ -11,10 +11,12 @@ function Header() {
   const [activityDropdownOpen, setActivityDropdownOpen] = useState(false);
   const [mobileActivityDropdownOpen, setMobileActivityDropdownOpen] = useState(false);
   const [mobileAboutDropdownOpen, setMobileAboutDropdownOpen] = useState(false);
+  const [mediaDropdownOpen, setMediaDropdownOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const aboutDropdownRef = useRef(null);
   const activityDropdownRef = useRef(null);
+  const mediaDropdownRef = useRef(null);
 
   const toggleAboutDropdown = () => {
     setAboutDropdownOpen(!aboutDropdownOpen);
@@ -36,9 +38,16 @@ function Header() {
     setMobileActivityDropdownOpen(false);
   };
 
+  const toggleMediaDropdown = () => {
+    setMediaDropdownOpen(!mediaDropdownOpen);
+    setAboutDropdownOpen(false);
+    setActivityDropdownOpen(false);
+  };
+
   const closeAllDropdowns = () => {
     setAboutDropdownOpen(false);
     setActivityDropdownOpen(false);
+    setMediaDropdownOpen(false);
     setMobileActivityDropdownOpen(false);
     setMobileAboutDropdownOpen(false);
     setOpen(false);
@@ -55,7 +64,6 @@ function Header() {
       setLastScrollY(currentScrollY);
     };
 
-    // Add passive listener for better performance
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
@@ -67,7 +75,6 @@ function Header() {
       document.body.style.overflow = 'auto';
     }
 
-    // Cleanup on unmount
     return () => {
       document.body.style.overflow = 'auto';
     };
@@ -90,11 +97,19 @@ function Header() {
       ) {
         setActivityDropdownOpen(false);
       }
+
+      if (
+        mediaDropdownOpen &&
+        mediaDropdownRef.current &&
+        !mediaDropdownRef.current.contains(event.target)
+      ) {
+        setMediaDropdownOpen(false);
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [aboutDropdownOpen, activityDropdownOpen]);
+  }, [aboutDropdownOpen, activityDropdownOpen, mediaDropdownOpen]);
 
   return (
     <header className={`header ${showHeader ? "visible" : "hidden"}`}>
@@ -136,12 +151,21 @@ function Header() {
               <span className={`arrow ${activityDropdownOpen ? "up" : ""}`}></span>
             </button>
             <ul className={`dropdown-menu ${activityDropdownOpen ? "show" : ""}`}>
-              <li><NavLink to="/news" onClick={closeAllDropdowns}>Yangiliklar</NavLink></li>
-              <li><NavLink to="/announcements" onClick={closeAllDropdowns}>E'lonlar</NavLink></li>
               <li><NavLink to="/addition" onClick={closeAllDropdowns}>To'garaklar</NavLink></li>
               <li><NavLink to="/teachers" onClick={closeAllDropdowns}>Ustozlar</NavLink></li>
               <li><NavLink to="/talentedstudents" onClick={closeAllDropdowns}>O'quvchilar</NavLink></li>
               <li><NavLink to="/schedule" onClick={closeAllDropdowns}>Dars Jadvali</NavLink></li>
+            </ul>
+          </div>
+
+          <div className="dropdown-container" ref={mediaDropdownRef}>
+            <button className="dropdown-toggle" onClick={toggleMediaDropdown}>
+              Maktab Mediasi
+              <span className={`arrow ${mediaDropdownOpen ? "up" : ""}`}></span>
+            </button>
+            <ul className={`dropdown-menu ${mediaDropdownOpen ? "show" : ""}`}>
+              <li><NavLink to="/news" onClick={closeAllDropdowns}>Yangiliklar</NavLink></li>
+              <li><NavLink to="/announcements" onClick={closeAllDropdowns}>E'lonlar</NavLink></li>
             </ul>
           </div>
 

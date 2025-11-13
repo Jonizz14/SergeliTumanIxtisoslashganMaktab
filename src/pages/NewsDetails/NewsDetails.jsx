@@ -14,11 +14,13 @@ function NewsDetails() {
   useEffect(() => {
     fetch("http://localhost:3000/news")
       .then((res) => res.json())
-      .then((data) => setNewsList(data));
+      .then((data) => setNewsList(data))
+      .catch((err) => console.error("❌ Xatolik:", err));
   }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    AOS.init({ duration: 1000, once: true, offset: 100 });
   }, []);
 
   if (!news) {
@@ -32,28 +34,57 @@ function NewsDetails() {
     );
   }
 
-  useEffect(() => {
-    AOS.init({ duration: 1000, once: true, offset: 100 });
-  }, []);
-
   return (
     <>
       <div className="newsdetails-layout">
         <div className="newsdetails-main">
           <div data-aos="fade-up" className="newsdetails">
             <div className="breadcrumb">
-              <Link to="/news" className="breadcrumb-link">Yangiliklar</Link>
+              <Link to="/news" className="breadcrumb-link">
+                Yangiliklar
+              </Link>
               <span className="breadcrumb-separator">/</span>
               <span className="breadcrumb-current">{news.title}</span>
             </div>
 
-            <img src={news.image} alt={news.title} className="newsdetails-img" />
+            {news.mainImage ? (
+              <img
+                src={news.mainImage}
+                alt={news.title}
+                className="newsdetails-img"
+              />
+            ) : news.video ? (
+              <video src={news.video} controls className="newsdetails-video" />
+            ) : null}
+
+            {(news.gallery?.length > 1 || news.video) && (
+              <div data-aos="fade-up" className="newsdetails-gallery">
+                <div className="gallery-grid">
+                  {news.gallery?.slice(1).map((img, idx) => (
+                    <img
+                      key={idx}
+                      src={img}
+                      alt={`Gallery ${idx + 2}`}
+                      className="gallery-img"
+                    />
+                  ))}
+
+                  {news.video && (
+                    <video
+                      src={news.video}
+                      controls
+                      className="gallery-video"
+                    />
+                  )}
+                </div>
+              </div>
+            )}
 
             <h2 className="newsdetails-title">{news.title}</h2>
             <p className="newsdetails-desc">{news.description}</p>
 
             <div className="newsdetails-footer">
-              <IoCalendarNumber size={30} className="newsdetails-icon" />
+              <IoCalendarNumber size={28} className="newsdetails-icon" />
               <span className="newsdetails-date">{news.date}</span>
             </div>
           </div>
@@ -63,7 +94,11 @@ function NewsDetails() {
           <h3 className="side-title">Qo'shimcha yangiliklar</h3>
           {newsList.slice(0, 6).map((item) => (
             <div key={item.id} className="side-card">
-              <img src={item.image} alt={item.title} className="side-card__img" />
+              <img
+                src={item.mainImage || item.gallery?.[0]}
+                alt={item.title}
+                className="side-card__img"
+              />
               <div className="side-card__body">
                 <h4 className="side-card__title">{item.title}</h4>
                 <Link
@@ -78,7 +113,6 @@ function NewsDetails() {
           ))}
         </div>
       </div>
-
     </>
   );
 }

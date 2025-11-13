@@ -26,6 +26,7 @@ import TalentedStudents from "./pages/TalentedS/TalentedStudents";
 import AboutSchool from "./pages/AboutSchool/AboutSchool";
 import Principals from "./pages/Principals/Principals";
 import ScientificWorks from "./pages/ScientificWorks/ScientificWorks";
+import ScrollTop from "./components/ScrollTop/ScrollTop";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -85,7 +86,6 @@ function App() {
     };
 
     const checkNetworkSpeed = () => {
-      // Skip network speed check on mobile for better performance
       if (window.innerWidth <= 768) {
         return Promise.resolve("fast");
       }
@@ -130,6 +130,7 @@ function App() {
 
   return (
     <>
+    <ScrollTop />
       <Routes>
         <Route path="/" element={<Layout><Home /></Layout>} />
         <Route path="/chat" element={<Layout><Chat /></Layout>} />

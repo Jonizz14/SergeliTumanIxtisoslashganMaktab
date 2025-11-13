@@ -16,14 +16,13 @@ const principals = [];
 const talentedStudents = [];
 const scientificWorks = [];
 
-
 principals.push({
   id: 1,
   firstName: faker.person.firstName(),
   lastName: faker.person.lastName(),
   photo: faker.image.avatar(),
   position: "Director",
-  biography: faker.lorem.paragraphs({ min: 2, max: 4 })
+  biography: faker.lorem.paragraphs({ min: 2, max: 4 }),
 });
 
 for (let i = 2; i <= 6; i++) {
@@ -37,13 +36,11 @@ for (let i = 2; i <= 6; i++) {
       "Academic Principal",
       "Administrative Principal",
     ]),
-    biography: faker.lorem.paragraphs({ min: 2, max: 4 })
+    biography: faker.lorem.paragraphs({ min: 2, max: 4 }),
   });
 }
 
-
 let studentId = 1;
-
 for (let i = 1; i <= TOTAL_CLASSES; i++) {
   const grade = faker.number.int({ min: 5, max: 11 });
   const section = faker.string.alpha({ length: 1, casing: "upper" });
@@ -72,7 +69,6 @@ for (let i = 1; i <= TOTAL_CLASSES; i++) {
   }
 }
 
-
 for (let i = TOTAL_CLASSES + 1; i <= TOTAL_TEACHERS; i++) {
   teachers.push({
     id: i,
@@ -80,25 +76,41 @@ for (let i = TOTAL_CLASSES + 1; i <= TOTAL_TEACHERS; i++) {
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
     subject: faker.helpers.arrayElement([
-      "Matematika", "Fizika", "Ingliz tili", "Tarix", "Kimyo",
-      "Biologiya", "Geografiya", "Rus tili", "Informatika"
+      "Matematika",
+      "Fizika",
+      "Ingliz tili",
+      "Tarix",
+      "Kimyo",
+      "Biologiya",
+      "Geografiya",
+      "Rus tili",
+      "Informatika",
     ]),
     classIds: [],
-    biography: faker.lorem.paragraphs({ min: 2, max: 4 })
+    biography: faker.lorem.paragraphs({ min: 2, max: 4 }),
   });
 }
 
+for (let i = 1; i <= 10; i++) {
+  const imageCount = faker.number.int({ min: 3, max: 6 });
+  const images = Array.from({ length: imageCount }, () =>
+    faker.image.urlPicsumPhotos({ width: 800, height: 400 })
+  );
 
-for (let i = 1; i <= 12; i++) {
   news.push({
     id: i,
-    image: faker.image.urlPicsumPhotos({ width: 800, height: 400 }),
+    mainImage: images[0],
+    gallery: images,
+    video: faker.helpers.arrayElement([
+      "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      "https://sample-videos.com/video123/mp4/720/sample_960x540.mp4",
+      null, 
+    ]),
     title: faker.lorem.sentence(5),
-    description: faker.lorem.paragraph(3),
+    description: faker.lorem.paragraphs({ min: 2, max: 4 }),
     date: faker.date.recent({ days: 30 }).toISOString().split("T")[0],
   });
 }
-
 
 for (let i = 1; i <= 5; i++) {
   const startDate = faker.date.recent({ days: 10 });
@@ -111,10 +123,9 @@ for (let i = 1; i <= 5; i++) {
     description: faker.lorem.sentence(10),
     startDate: startDate.toISOString().split("T")[0],
     endDate: endDate.toISOString().split("T")[0],
-    time: "12:00 AM - 2:00 PM",
+    time: "12:00 - 14:00",
   });
 }
-
 
 const CLUB_NAMES = [
   "Robototexnika",
@@ -129,7 +140,6 @@ const CLUB_NAMES = [
 
 for (let i = 1; i <= CLUB_NAMES.length; i++) {
   const randomTeacher = faker.helpers.arrayElement(teachers);
-
   additions.push({
     id: i,
     name: CLUB_NAMES[i - 1],
@@ -143,30 +153,25 @@ for (let i = 1; i <= CLUB_NAMES.length; i++) {
   });
 }
 
-
 for (let i = 1; i <= 10; i++) {
   talentedStudents.push({
     id: i,
     image: faker.image.urlPicsumPhotos({ width: 400, height: 400 }),
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    biography: faker.lorem.paragraphs({ min: 2, max: 3 })
+    biography: faker.lorem.paragraphs({ min: 2, max: 3 }),
   });
 }
-
 
 for (let i = 1; i <= 4; i++) {
   scientificWorks.push({
     id: i,
-    video: `https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_${i}mb.mp4`,
+    video: `https://sample-videos.com/video123/mp4/720/sample_640x360_${i}.mp4`,
     title: faker.lorem.words(3),
     description: faker.lorem.sentence(10),
-    studentName: faker.person.fullName()
+    studentName: faker.person.fullName(),
   });
 }
-
-
-
 
 const db = {
   principals,
@@ -177,8 +182,8 @@ const db = {
   anons,
   additions,
   talentedStudents,
-  scientificWorks
+  scientificWorks,
 };
 
 fs.writeFileSync("db.json", JSON.stringify(db, null, 2), "utf-8");
-console.log("✅ db.json tayyor!");
+console.log("✅ db.json tayyor — yangiliklarda ko‘p rasm va video bilan!");
