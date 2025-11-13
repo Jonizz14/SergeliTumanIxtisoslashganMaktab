@@ -97,7 +97,6 @@
 
 .footer-link:hover {
     color: #1e3a8a;
-    padding-left: 8px;
 }
 
 .footer-link:hover::before {
