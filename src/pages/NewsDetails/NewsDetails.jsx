@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { IoCalendarNumber } from "react-icons/io5";
 import "/src/pages/NewsDetails/NewsDetails.css";
 import AOS from "aos";
@@ -7,9 +7,32 @@ import "aos/dist/aos.css";
 
 function NewsDetails() {
   const location = useLocation();
-  const navigate = useNavigate();
   const news = location.state?.news;
   const [newsList, setNewsList] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedMedia, setSelectedMedia] = useState(null);
+
+  const openModal = (media) => {
+    setSelectedMedia(media);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedMedia(null);
+    setModalOpen(false);
+  };
+
+  useEffect(() => {
+    document.body.style.overflow = modalOpen ? "hidden" : "auto";
+  }, [modalOpen]);
+
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") closeModal();
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
 
   useEffect(() => {
     fetch("http://localhost:3000/news")
@@ -39,6 +62,7 @@ function NewsDetails() {
       <div className="newsdetails-layout">
         <div className="newsdetails-main">
           <div data-aos="fade-up" className="newsdetails">
+            {/* Breadcrumb */}
             <div className="breadcrumb">
               <Link to="/news" className="breadcrumb-link">
                 Yangiliklar
@@ -52,9 +76,17 @@ function NewsDetails() {
                 src={news.mainImage}
                 alt={news.title}
                 className="newsdetails-img"
+                onClick={() =>
+                  openModal({ type: "image", src: news.mainImage })
+                }
               />
             ) : news.video ? (
-              <video src={news.video} controls className="newsdetails-video" />
+              <video
+                src={news.video}
+                controls
+                className="newsdetails-video"
+                onClick={() => openModal({ type: "video", src: news.video })}
+              />
             ) : null}
 
             {(news.gallery?.length > 1 || news.video) && (
@@ -66,6 +98,7 @@ function NewsDetails() {
                       src={img}
                       alt={`Gallery ${idx + 2}`}
                       className="gallery-img"
+                      onClick={() => openModal({ type: "image", src: img })}
                     />
                   ))}
 
@@ -74,6 +107,9 @@ function NewsDetails() {
                       src={news.video}
                       controls
                       className="gallery-video"
+                      onClick={() =>
+                        openModal({ type: "video", src: news.video })
+                      }
                     />
                   )}
                 </div>
@@ -92,7 +128,7 @@ function NewsDetails() {
 
         <div data-aos="fade-up" className="newsdetails-side">
           <h3 className="side-title">Qo'shimcha yangiliklar</h3>
-          {newsList.slice(0, 6).map((item) => (
+          {newsList.slice(0, 14).map((item) => (
             <div key={item.id} className="side-card">
               <img
                 src={item.mainImage || item.gallery?.[0]}
@@ -113,6 +149,30 @@ function NewsDetails() {
           ))}
         </div>
       </div>
+
+      {modalOpen && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            {selectedMedia?.type === "image" ? (
+              <img
+                src={selectedMedia.src}
+                alt="Full view"
+                className="modal-img"
+              />
+            ) : (
+              <video
+                src={selectedMedia.src}
+                controls
+                autoPlay
+                className="modal-video"
+              />
+            )}
+            <button className="details-close-btn" onClick={closeModal}>
+              ×
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }

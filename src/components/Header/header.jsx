@@ -11,6 +11,7 @@ function Header() {
   const [activityDropdownOpen, setActivityDropdownOpen] = useState(false);
   const [mobileActivityDropdownOpen, setMobileActivityDropdownOpen] = useState(false);
   const [mobileAboutDropdownOpen, setMobileAboutDropdownOpen] = useState(false);
+  const [mobileMediaDropdownOpen, setMobileMediaDropdownOpen] = useState(false);
   const [mediaDropdownOpen, setMediaDropdownOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -31,10 +32,18 @@ function Header() {
   const toggleMobileActivityDropdown = () => {
     setMobileActivityDropdownOpen(!mobileActivityDropdownOpen);
     setMobileAboutDropdownOpen(false);
+    setMobileMediaDropdownOpen(false);
   };
 
   const toggleMobileAboutDropdown = () => {
     setMobileAboutDropdownOpen(!mobileAboutDropdownOpen);
+    setMobileActivityDropdownOpen(false);
+    setMobileMediaDropdownOpen(false);
+  };
+
+  const toggleMobileMediaDropdown = () => {
+    setMobileMediaDropdownOpen(!mobileMediaDropdownOpen);
+    setMobileAboutDropdownOpen(false);
     setMobileActivityDropdownOpen(false);
   };
 
@@ -50,6 +59,7 @@ function Header() {
     setMediaDropdownOpen(false);
     setMobileActivityDropdownOpen(false);
     setMobileAboutDropdownOpen(false);
+    setMobileMediaDropdownOpen(false);
     setOpen(false);
   };
 
@@ -112,11 +122,11 @@ function Header() {
   }, [aboutDropdownOpen, activityDropdownOpen, mediaDropdownOpen]);
 
   return (
-    <header className={`header ${showHeader ? "visible" : "hidden"}`}>
-      <nav className="nav-container">
+    <header className={`header ${showHeader ? "header--visible" : "header--hidden"}`}>
+      <nav className="header__nav-container">
         <NavLink to="/" onClick={closeAllDropdowns}>
-          <div className="header-logo-div">
-            <img className="logo-website" src={Logo} alt="logo" />
+          <div className="header__logo-div">
+            <img className="header__logo" src={Logo} alt="logo" />
             <div>
               <p>Sergeli Tuman</p>
               <p>Ixtisoslashtirilgan Maktab</p>
@@ -124,33 +134,33 @@ function Header() {
           </div>
         </NavLink>
 
-        <div className="nav-right-section desktop-menu">
-          <ul className="nav-links">
+        <div className="header__nav-right-section header__desktop-menu">
+          <ul className="header__nav-links">
             <li>
-              <NavLink className="nav-links-home" to="/" end onClick={closeAllDropdowns}>
+              <NavLink className="header__nav-links-home" to="/" end onClick={closeAllDropdowns}>
                 Bosh sahifa
               </NavLink>
             </li>
           </ul>
 
-          <div className="dropdown-container" ref={aboutDropdownRef}>
-            <button className="dropdown-toggle" onClick={toggleAboutDropdown}>
+          <div className="header__dropdown-container" ref={aboutDropdownRef}>
+            <button className="header__dropdown-toggle" onClick={toggleAboutDropdown}>
               Maktab Haqida
-              <span className={`arrow ${aboutDropdownOpen ? "up" : ""}`}></span>
+              <span className={`header__arrow ${aboutDropdownOpen ? "header__arrow--up" : ""}`}></span>
             </button>
-            <ul className={`dropdown-menu ${aboutDropdownOpen ? "show" : ""}`}>
+            <ul className={`header__dropdown-menu ${aboutDropdownOpen ? "header__dropdown-menu--show" : ""}`}>
               <li><NavLink to="/aboutschool" onClick={closeAllDropdowns}>Maktab tarixi</NavLink></li>
               <li><NavLink to="/principals" onClick={closeAllDropdowns}>Rahbariyat</NavLink></li>
               <li><NavLink to="/scientificworks" onClick={closeAllDropdowns}>Ilmiy Ishlar</NavLink></li>
             </ul>
           </div>
 
-          <div className="dropdown-container" ref={activityDropdownRef}>
-            <button className="dropdown-toggle" onClick={toggleActivityDropdown}>
+          <div className="header__dropdown-container" ref={activityDropdownRef}>
+            <button className="header__dropdown-toggle" onClick={toggleActivityDropdown}>
               Maktab Faoliyati
-              <span className={`arrow ${activityDropdownOpen ? "up" : ""}`}></span>
+              <span className={`header__arrow ${activityDropdownOpen ? "header__arrow--up" : ""}`}></span>
             </button>
-            <ul className={`dropdown-menu ${activityDropdownOpen ? "show" : ""}`}>
+            <ul className={`header__dropdown-menu ${activityDropdownOpen ? "header__dropdown-menu--show" : ""}`}>
               <li><NavLink to="/addition" onClick={closeAllDropdowns}>To'garaklar</NavLink></li>
               <li><NavLink to="/teachers" onClick={closeAllDropdowns}>Ustozlar</NavLink></li>
               <li><NavLink to="/talentedstudents" onClick={closeAllDropdowns}>O'quvchilar</NavLink></li>
@@ -158,25 +168,25 @@ function Header() {
             </ul>
           </div>
 
-          <div className="dropdown-container" ref={mediaDropdownRef}>
-            <button className="dropdown-toggle" onClick={toggleMediaDropdown}>
+          <div className="header__dropdown-container" ref={mediaDropdownRef}>
+            <button className="header__dropdown-toggle" onClick={toggleMediaDropdown}>
               Maktab Mediasi
-              <span className={`arrow ${mediaDropdownOpen ? "up" : ""}`}></span>
+              <span className={`header__arrow ${mediaDropdownOpen ? "header__arrow--up" : ""}`}></span>
             </button>
-            <ul className={`dropdown-menu ${mediaDropdownOpen ? "show" : ""}`}>
+            <ul className={`header__dropdown-menu ${mediaDropdownOpen ? "header__dropdown-menu--show" : ""}`}>
               <li><NavLink to="/news" onClick={closeAllDropdowns}>Yangiliklar</NavLink></li>
               <li><NavLink to="/announcements" onClick={closeAllDropdowns}>E'lonlar</NavLink></li>
             </ul>
           </div>
 
-          <ul className="nav-links">
+          <ul className="header__nav-links">
             <li>
               <NavLink to="/contact" onClick={closeAllDropdowns}>Bog'lanish</NavLink>
             </li>
           </ul>
         </div>
 
-        <div className="mobile-menu-btn">
+        <div className="header__mobile-menu-btn">
           <AnimatePresence mode="wait" initial={false}>
             {open ? (
               <motion.div
@@ -200,15 +210,15 @@ function Header() {
           </AnimatePresence>
         </div>
 
-        <div className={`mobile-sidebar ${open ? "open" : ""}`}>
+        <div className={`header__mobile-sidebar ${open ? "header__mobile-sidebar--open" : ""}`}>
           <ul>
             <li><NavLink to="/" end onClick={closeAllDropdowns}>Bosh sahifa</NavLink></li>
             <li>
-              <button className="mobile-dropdown-toggle" onClick={toggleMobileAboutDropdown}>
+              <button className="header__mobile-dropdown-toggle" onClick={toggleMobileAboutDropdown}>
                 Maktab Haqida
-                <FiChevronDown className={`mobile-chevron ${mobileAboutDropdownOpen ? "up" : ""}`} />
+                <FiChevronDown className={`header__mobile-chevron ${mobileAboutDropdownOpen ? "header__mobile-chevron--up" : ""}`} />
               </button>
-              <ul className={`mobile-dropdown-menu ${mobileAboutDropdownOpen ? "show" : ""}`}>
+              <ul className={`header__mobile-dropdown-menu ${mobileAboutDropdownOpen ? "header__mobile-dropdown-menu--show" : ""}`}>
                 <li><NavLink to="/aboutschool" onClick={closeAllDropdowns}>Maktab Tarixi</NavLink></li>
                 <li><NavLink to="/principals" onClick={closeAllDropdowns}>Rahbariyat</NavLink></li>
                 <li><NavLink to="/scientificworks" onClick={closeAllDropdowns}>Ilmiy Ishlar</NavLink></li>
@@ -216,16 +226,24 @@ function Header() {
               </ul>
             </li>
             <li>
-              <button className="mobile-dropdown-toggle" onClick={toggleMobileActivityDropdown}>
+              <button className="header__mobile-dropdown-toggle" onClick={toggleMobileActivityDropdown}>
                 Maktab Faoliyati
-                <FiChevronDown className={`mobile-chevron ${mobileActivityDropdownOpen ? "up" : ""}`} />
+                <FiChevronDown className={`header__mobile-chevron ${mobileActivityDropdownOpen ? "header__mobile-chevron--up" : ""}`} />
               </button>
-              <ul className={`mobile-dropdown-menu ${mobileActivityDropdownOpen ? "show" : ""}`}>
-                <li><NavLink to="/news" onClick={closeAllDropdowns}>Yangiliklar</NavLink></li>
-                <li><NavLink to="/announcements" onClick={closeAllDropdowns}>E'lonlar</NavLink></li>
+              <ul className={`header__mobile-dropdown-menu ${mobileActivityDropdownOpen ? "header__mobile-dropdown-menu--show" : ""}`}>
                 <li><NavLink to="/addition" onClick={closeAllDropdowns}>To'garaklar</NavLink></li>
                 <li><NavLink to="/teachers" onClick={closeAllDropdowns}>Ustozlar</NavLink></li>
                 <li><NavLink to="/talentedstudents" onClick={closeAllDropdowns}>O'quvchilar</NavLink></li>
+              </ul>
+            </li>
+            <li>
+              <button className="header__mobile-dropdown-toggle" onClick={toggleMobileMediaDropdown}>
+                Maktab Mediasi
+                <FiChevronDown className={`header__mobile-chevron ${mobileMediaDropdownOpen ? "header__mobile-chevron--up" : ""}`} />
+              </button>
+              <ul className={`header__mobile-dropdown-menu ${mobileMediaDropdownOpen ? "header__mobile-dropdown-menu--show" : ""}`}>
+                <li><NavLink to="/news" onClick={closeAllDropdowns}>Yangiliklar</NavLink></li>
+                <li><NavLink to="/announcements" onClick={closeAllDropdowns}>E'lonlar</NavLink></li>
               </ul>
             </li>
             <li><NavLink to="/contact" onClick={closeAllDropdowns}>Bog'lanish</NavLink></li>

@@ -30,7 +30,9 @@ function TeacherDetails() {
   return (
     <div data-aos="fade-up" className="teacherdetails">
       <div className="breadcrumb">
-        <Link to="/teachers" className="breadcrumb-link">Ustozlar</Link>
+        <Link to="/teachers" className="breadcrumb-link">
+          Ustozlar
+        </Link>
         <span className="breadcrumb-separator">/</span>
         <span className="breadcrumb-current">
           {teacher.firstName} {teacher.lastName}
@@ -49,10 +51,44 @@ function TeacherDetails() {
       <p className="teacherdetails-subject">{teacher.subject}</p>
 
       <div className="teacherdetails-info">
-        <p><strong>Biografiya:</strong></p>
+        <p>
+          <strong>Biografiya:</strong>
+        </p>
         <p>{teacher.biography || "Biografiya hali qo‘shilmagan."}</p>
       </div>
 
+      <div className="teacher-social-wrapper">
+        {teacher.socials?.instagram && (
+          <a
+            href={teacher.socials.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-btn instagram-btn"
+          >
+            <FaInstagram />
+          </a>
+        )}
+        {teacher.socials?.telegram && (
+          <a
+            href={teacher.socials.telegram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-btn telegram-btn"
+          >
+            <FaTelegram />
+          </a>
+        )}
+        {teacher.socials?.facebook && (
+          <a
+            href={teacher.socials.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-btn facebook-btn"
+          >
+            <FaFacebook />
+          </a>
+        )}
+      </div>
     </div>
   );
 }

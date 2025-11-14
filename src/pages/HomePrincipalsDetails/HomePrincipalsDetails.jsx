@@ -58,7 +58,7 @@ function HomePrincipalsDetails() {
     return (
         <div className="teacherdetails">
             <div className="breadcrumb">
-                <Link to="/" className="breadcrumb-link">Bosh sahifa</Link>
+                <Link to="/principals" className="breadcrumb-link">Rahbariyat</Link>
                 <span className="breadcrumb-separator">/</span>
                 <span className="breadcrumb-current">
                     {person.firstName} {person.lastName}

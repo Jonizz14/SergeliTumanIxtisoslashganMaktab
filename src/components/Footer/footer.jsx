@@ -7,75 +7,75 @@ import Logo from '../Footer/logo.svg'
 function Footer () {
   return (
     <footer className='footer'>
-      <div className='footer-container'>
-        <div className='footer-col-'>
+      <div className='footer__container'>
+        <div className='footer__col'>
           <Link to={'/'}>
-            <div className='footer-logo-div'>
-              <img className='logo-footer' src={Logo} alt='' />
+            <div className='footer__logo-div'>
+              <img className='footer__logo' src={Logo} alt='' />
               <div>
-                <p className='footer-logo-text'>Bizning Maktab</p>
-                <p className='footer-logo-text'>Kelajak uchun ta’lim</p>
+                <p className='footer__logo-text'>Bizning Maktab</p>
+                <p className='footer__logo-text'>Kelajak uchun ta’lim</p>
               </div>
             </div>
           </Link>
-          <div className='footer-col'>
-            <a href='tel:+998901234567' className='footer-link'>
+          <div className='footer__col'>
+            <a href='tel:+998901234567' className='footer__link'>
               +998 90 123 45 67
             </a>
-            <a href='mailto:info@liftmedia.com' className='footer-link'>
+            <a href='mailto:info@liftmedia.com' className='footer__link'>
               info@liftmedia.com
             </a>
           </div>
-          <div className='footer-socials'>
+          <div className='footer__socials'>
             <a
               href='https://www.instagram.com/sergeli_ixtisos_maktabi/'
               target='_blank'
               rel='noopener noreferrer'
             >
-              <FaInstagram className='btn-social' />
+              <FaInstagram className='footer__social-btn' />
             </a>
             <a
               href='https://youtube.com'
               target='_blank'
               rel='noopener noreferrer'
             >
-              <FaTelegram className='btn-social' />
+              <FaTelegram className='footer__social-btn' />
             </a>
             <a
               href='https://facebook.com'
               target='_blank'
               rel='noopener noreferrer'
             >
-              <FaFacebook className='btn-social' />
+              <FaFacebook className='footer__social-btn' />
             </a>
           </div>
         </div>
-        <div className='footer-flex'>
-          <div className='footer-col'>
+        <div className='footer__flex'>
+          <div className='footer__col'>
             <h3>Sahifalar</h3>
-            <Link to='/' className='footer-link'>
+            <Link to='/' className='footer__link'>
               Bosh sahifa
             </Link>
-            <Link to='/news' className='footer-link'>
+            <Link to='/news' className='footer__link'>
               Yangiliklar
             </Link>
-            <Link to='/teachers' className='footer-link'>
+            <Link to='/teachers' className='footer__link'>
               O'qituvchilar
             </Link>
-            <Link to='/schedule' className='footer-link'>
+            <Link to='/schedule' className='footer__link'>
               Dars Jadvali
             </Link>
-            <Link to='/announcements' className='footer-link'>
+            <Link to='/announcements' className='footer__link'>
               E'lonlar
             </Link>
-            <Link to='/addition' className='footer-link'>
+            <Link to='/addition' className='footer__link'>
               To'garaklar
             </Link>
           </div>
         </div>
-        <div className='footer-col'>
+        <div className='footer__col'>
           <h3>Bizning manzilimiz</h3>
-          <div className='footer-map'>
+          <div className='footer__map'>
             <iframe
               src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d551.5804135650701!2d69.2218422139766!3d41.210502803385936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae61c403191f6d%3A0xc8199e959d144b2e!2sSergeli%20ixtisoslashtirilgan%20maktab!5e0!3m2!1sru!2s!4v1758799393697!5m2!1sru!2s'
               width='100%'
@@ -85,15 +85,15 @@ function Footer () {
               loading='lazy'
               referrerPolicy='no-referrer-when-downgrade'
               title='Google Map'
-              className='google-map'
+              className='footer__google-map'
             ></iframe>
           </div>
         </div>
       </div>
 
-      <div className='footer-bottom'>
+      <div className='footer__bottom'>
         <p>© 2025 Lift Media. Hamma huquqlar himoyalangan.</p>
-        <Link className='ourcommand' to='/ourcommand'>
+        <Link className='footer__ourcommand' to='/ourcommand'>
           Bizning jamoa
         </Link>
       </div>

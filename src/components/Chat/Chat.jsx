@@ -211,11 +211,11 @@ export default function Chat() {
 
 
     return (
-        <div className={`chat-wrapper ${open ? "open" : ""}`}>
-            <div className={`chat-container ${open ? "expanded" : ""} ${expanded ? "full-expanded" : ""}`}>
+        <div className={`chat__wrapper ${open ? "chat__wrapper--open" : ""}`}>
+          <div className={`chat__container ${open ? "chat__container--expanded" : ""} ${expanded ? "chat__container--full-expanded" : ""}`}>
                 {!open && (
-                    <button className="chat-toggle-btn" onClick={toggleChatOpen}>
-                        <div className="icon-wrapper">
+                    <button className="chat__toggle-btn" onClick={toggleChatOpen}>
+                        <div className="chat__icon-wrapper">
                             <RiGeminiFill size={35} />
                         </div>
                     </button>
@@ -223,44 +223,44 @@ export default function Chat() {
 
                 {open && (
                     <>
-                        <div className="chat-header">
+                        <div className="chat__header">
                             <h1>STIM AI</h1>
-                            <div className="header-buttons">
+                            <div className="chat__header-buttons">
                                 {!isMobile && (
-                                    <button className="expand-btn" onClick={toggleExpand} title={expanded ? "Kichiklashtirish" : "Kattalashtirish"}>
+                                    <button className="chat__expand-btn" onClick={toggleExpand} title={expanded ? "Kichiklashtirish" : "Kattalashtirish"}>
                                         {expanded ? <FiMinimize2 size={16} /> : <FiMaximize2 size={16} />}
                                     </button>
-                                )}
-                                <button className="close-btn" onClick={toggleChatOpen}>
+                                 )}
+                                 <button className="chat__close-btn" onClick={toggleChatOpen}>
                                     <FiX size={20} />
                                 </button>
                             </div>
                         </div>
 
-                        <div className="chat-box" ref={chatBoxRef}>
+                        <div className="chat__box" ref={chatBoxRef}>
                             {showWelcome && messages.length === 0 && (
-                                <div className="msg ai">
+                                <div className="chat__msg chat__msg--ai">
                                     Salom! Men sizga yordam berish uchun shu yerdaman 😊<br />
                                     Iltimos, biror savol yoki habar yozing...
                                 </div>
                             )}
                             {messages.map((m, i) => (
-                                <div key={m.id} className={`msg ${m.sender}`}>
+                                <div key={m.id} className={`chat__msg chat__msg--${m.sender}`}>
                                     {m.text}
                                     {m.sender === "ai" && !loading && (
-                                        <div className="msg-actions">
+                                        <div className="chat__msg-actions">
                                             <button onClick={() => copyMessage(m.text, i)} title="Nusxa qil">
                                                 {copiedIndex === i ? <FiCheck color="green" /> : <FiCopy />}
                                             </button>
                                             <button
-                                                className={`like-btn ${feedback[m.id] === "like" ? "active" : ""}`}
+                                                className={`chat__like-btn ${feedback[m.id] === "like" ? "chat__like-btn--active" : ""}`}
                                                 onClick={() => rateMessage(m.id, true)}
                                                 title="Yo'qdi"
                                             >
                                                 <FiThumbsUp />
                                             </button>
                                             <button
-                                                className={`dislike-btn ${feedback[m.id] === "dislike" ? "active" : ""}`}
+                                                className={`chat__dislike-btn ${feedback[m.id] === "dislike" ? "chat__dislike-btn--active" : ""}`}
                                                 onClick={() => rateMessage(m.id, false)}
                                                 title="Yo'qmadi"
                                             >
@@ -272,7 +272,7 @@ export default function Chat() {
                             ))}
                         </div>
 
-                        <div className="chat-input">
+                        <div className="chat__input">
                             <input
                                 type="text"
                                 placeholder="Savolingizni yozing..."

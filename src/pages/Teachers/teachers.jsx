@@ -51,36 +51,38 @@ function Teachers() {
 
   return (
     <>
-      <section data-aos="fade-up" className="main-section">
-        <div className="teachers-section">
-          <p className="teachers-section-p1">Bizning ustozlar</p>
-          <p className="teachers-section-p2">
+      <section data-aos="fade-up" className="teachers__main-section">
+        <div className="teachers__section">
+          <p className="teachers__title">Bizning ustozlar</p>
+          <p className="teachers__subtitle">
             Bizning professional o'qituvchilar jamoamiz bilan tanishing
           </p>
-          <form className="form" onSubmit={(e) => e.preventDefault()}>
-            <input
-              className="input"
-              placeholder="Fan yoki ism bo'yicha qidiring"
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <button
-              className="reset"
-              type="button"
-              onClick={() => setSearchTerm("")}
-            >
-              ✕
-            </button>
+          <form className="teachers__form">
+            <div className="teachers__input-wrapper">
+              <input
+                type="text"
+                className="teachers__input"
+                placeholder="O‘quvchini qidirish..."
+              />
+              <button
+                type="button"
+                className="teachers__reset-btn"
+                onClick={() => {
+                  document.querySelector(".teachers__input").value = "";
+                }}
+              >
+                ×
+              </button>
+            </div>
           </form>
         </div>
 
-        <section data-aos="fade-up" className="teachers-grid">
+        <section data-aos="fade-up" className="teachers__grid">
           {filteredTeachers.length > 0 ? (
             filteredTeachers.map((teacher) => (
               <div
                 key={teacher.id}
-                className="teacher-card"
+                className="teachers__card"
                 onClick={() => handleNavigate(teacher)}
                 role="button"
                 tabIndex={0}
@@ -93,13 +95,15 @@ function Teachers() {
                 <h3>
                   {teacher.firstName} {teacher.lastName}
                 </h3>
-                <p className="subject">{teacher.subject}</p>
+                <p className="teachers__subject">{teacher.subject}</p>
                 <p>{teacher.email}</p>
                 <p>{teacher.phone}</p>
               </div>
             ))
           ) : (
-            <p className="no-result">So'rovingiz bo'yicha hech narsa topilmadi.</p>
+            <p className="teachers__no-result">
+              So'rovingiz bo'yicha hech narsa topilmadi.
+            </p>
           )}
         </section>
       </section>

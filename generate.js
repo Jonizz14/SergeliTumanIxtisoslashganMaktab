@@ -88,6 +88,11 @@ for (let i = TOTAL_CLASSES + 1; i <= TOTAL_TEACHERS; i++) {
     ]),
     classIds: [],
     biography: faker.lorem.paragraphs({ min: 2, max: 4 }),
+    social: {
+      instagram: `https://instagram.com/${faker.internet.username()}`,
+      telegram: `https://t.me/${faker.internet.username()}`,
+      facebook: `https://facebook.com/${faker.internet.username()}`,
+    },
   });
 }
 
@@ -104,7 +109,7 @@ for (let i = 1; i <= 10; i++) {
     video: faker.helpers.arrayElement([
       "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
       "https://sample-videos.com/video123/mp4/720/sample_960x540.mp4",
-      null, 
+      null,
     ]),
     title: faker.lorem.sentence(5),
     description: faker.lorem.paragraphs({ min: 2, max: 4 }),
@@ -150,6 +155,11 @@ for (let i = 1; i <= CLUB_NAMES.length; i++) {
     teacherSubject: randomTeacher.subject,
     teacherBiography: randomTeacher.biography,
     image: faker.image.urlPicsumPhotos({ width: 800, height: 400 }),
+    social: {
+      instagram: randomTeacher.social.instagram,
+      telegram: randomTeacher.social.telegram,
+      facebook: randomTeacher.social.facebook,
+    },
   });
 }
 
