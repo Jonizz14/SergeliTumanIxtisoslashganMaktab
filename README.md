@@ -147,23 +147,23 @@ school-website/
 ## 📸 Screenshots
 
 ### 🏠 Asosiy Sahifa
-![Home Page](./screenshots/home.png)
+![Home Page](./screenshots/Home.png)
 *Asosiy sahifa - yangiliklar va navigatsiya*
 
 ### 📰 Yangiliklar Sahifasi
-![News Page](./screenshots/news.png)
+![News Page](./screenshots/News.png)
 *Yangiliklar ro'yxati va qidiruv funksiyasi*
 
 ### 👨‍🏫 O'qituvchilar Sahifasi
-![Teachers Page](./screenshots/teachers.png)
+![Teachers Page](./screenshots/Teachers.png)
 *O'qituvchilar profili va ma'lumotlari*
 
 ### 📞 Aloqa Sahifasi
-![Contact Page](./screenshots/contact.png)
+![Contact Page](./screenshots/Contact.png)
 *Aloqa formasi va Google Maps*
 
 ### 🤖 AI Chat
-![AI Chat](./screenshots/chat.png)
+![AI Chat](./screenshots/Chat.png)
 *Sun'iy intellekt yordamchi chat*
 
 > 📝 **Eslatma:** Screenshotlarni `screenshots/` papkasiga qo'shing va yuqoridagi linklarni yangilang.
