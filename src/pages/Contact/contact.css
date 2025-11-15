@@ -61,10 +61,24 @@
 }
 
 .contact-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 36px;
-    align-items: flex-start;
+}
+
+.contact-top {
+    display: flex;
+    gap: 36px;
+    flex-wrap: wrap;
+}
+
+.contact-info {
+    flex: 1 1 300px;
+    padding: 20px;
+}
+
+.contact-form {
+    flex: 1 1 300px;
 }
 
 .contact-info {
@@ -146,7 +160,7 @@
 
 .contact-map iframe {
     width: 100%;
-    height: 260px;
+    height: 400px;
     border: none;
     border-radius: 14px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
