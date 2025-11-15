@@ -1,0 +1,175 @@
+.about-school {
+  max-width: 1400px;
+  margin: 50px auto;
+  padding: 0 20px;
+  font-family: "Segoe UI", sans-serif;
+  color: #1a2a4f;
+}
+
+.about-title {
+  font-size: 42px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 12px;
+  color: #000000;
+}
+
+.about-subtitle {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+  max-width: 900px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+.about-info-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  margin: 40px auto;
+  max-width: 1200px;
+  flex-wrap: wrap;
+}
+
+.about-info-image img {
+  width: 100%;
+  max-width: 540px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  border: 4px solid #102d99;
+  object-fit: cover;
+}
+
+.about-info-content h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #102d99;
+}
+
+.about-info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.about-info-line {
+  width: 6px;
+  height: 100%;
+  background: #102d99;
+  border-radius: 4px;
+}
+
+.about-info-text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  max-width: 600px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 26px;
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+.about-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid #dbe3f9;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.07);
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.about-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+.about-icon {
+  font-size: 42px;
+  color: #102d99;
+  margin-bottom: 14px;
+}
+
+.about-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #1a2a4f;
+}
+
+.about-card p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.about-additional {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.about-additional h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #102d99;
+  margin-bottom: 20px;
+}
+
+.about-additional-content {
+  max-width: 900px;
+  margin: auto;
+  text-align: left;
+  background: #f9f9f9;
+  border-radius: 14px;
+  padding: 25px 30px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  line-height: 1.6;
+}
+
+.about-additional-content p {
+  margin-bottom: 16px;
+  color: #333;
+  font-size: 15px;
+}
+
+@media (max-width: 850px) {
+  .about-title {
+    font-size: 36px;
+  }
+
+  .about-info-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-info-text {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-title {
+    font-size: 30px;
+  }
+
+  .about-grid {
+    gap: 20px;
+  }
+
+  .about-card {
+    padding: 18px;
+  }
+
+  .about-icon {
+    font-size: 36px;
+  }
+}

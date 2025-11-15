@@ -733,6 +733,35 @@
   background: #1e3a8a !important;
 }
 
+.home__carousel {
+  padding: 40px 20px;
+  background: #fff;
+}
+
+.sponsor-swiper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sponsor-swiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sponsor-swiper img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+}
+
+.sponsor-swiper img:hover {
+  transform: scale(1.05);
+}
 
 @media (max-width: 1200px) {
   .gallery-container {

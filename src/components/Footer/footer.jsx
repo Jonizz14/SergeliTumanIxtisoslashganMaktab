@@ -71,9 +71,6 @@ function Footer () {
             <Link to='/addition' className='footer__link'>
               To'garaklar
             </Link>
-            <Link to='/documentation' className='footer__link'>
-              Hujjatlar
-            </Link>
           </div>
         </div>
         <div className='footer__col'>

@@ -332,6 +332,44 @@ function Home () {
         </div>
       </section>
 
+      <section className='carousel-section'>
+        <div className='home__carousel'>
+          <Swiper
+            modules={[Autoplay]}
+            autoplay={{ delay: 2000, disableOnInteraction: false }}
+            loop={true}
+            slidesPerView={4}
+            spaceBetween={20}
+            breakpoints={{
+              320: { slidesPerView: 2 },
+              640: { slidesPerView: 3 },
+              1024: { slidesPerView: 4 },
+              1280: { slidesPerView: 5 }
+            }}
+            className='sponsor-swiper'
+          >
+            <SwiperSlide>
+              <img src="/src/pages/Home/sponsor1.png" alt="Sponsor 1" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="/src/pages/Home/sponsor2.png" alt="Sponsor 2" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="/src/pages/Home/sponsor3.png" alt="Sponsor 3" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="/src/pages/Home/sponsor4.png" alt="Sponsor 4" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="/src/pages/Home/sponsor5.png" alt="Sponsor 5" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src="/src/pages/Home/sponsor6.png" alt="Sponsor 6" />
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </section>
+
       <section data-aos='fade-up' className='bg-gray-900 py-14'>
         <div className='swiper-title-bottom'>
           <p className='swiper-botto-p'>Maktab Fotogalareyasi</p>
