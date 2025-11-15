@@ -153,8 +153,31 @@
     padding-top: 20px;
 }
 
-.footer__ourcommand {
-    color: blue;
+.footer__bottom-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.footer__ourcommand,
+.footer__documentation {
+    color: #1e3a8a;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer__ourcommand:hover,
+.footer__documentation:hover {
+    color: #1d4ed8;
+}
+
+@media (max-width: 480px) {
+    .footer__bottom-links {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
 
 @media (max-width: 1200px) {

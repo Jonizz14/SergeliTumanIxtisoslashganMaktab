@@ -169,8 +169,6 @@ school-website/
 ![AI Chat](./screenshots/Chat.png)
 *Sun'iy intellekt yordamchi chat*
 
-> 📝 **Eslatma:** Screenshotlarni `screenshots/` papkasiga qo'shing va yuqoridagi linklarni yangilang.
-
 ## 🎮 Foydalanish
 
 ### Navigatsiya

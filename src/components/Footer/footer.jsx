@@ -71,6 +71,9 @@ function Footer () {
             <Link to='/addition' className='footer__link'>
               To'garaklar
             </Link>
+            <Link to='/documentation' className='footer__link'>
+              Hujjatlar
+            </Link>
           </div>
         </div>
         <div className='footer__col'>
@@ -93,9 +96,14 @@ function Footer () {
 
       <div className='footer__bottom'>
         <p>© 2025 Lift Media. Hamma huquqlar himoyalangan.</p>
-        <Link className='footer__ourcommand' to='/ourcommand'>
-          Bizning jamoa
-        </Link>
+        <div className='footer__bottom-links'>
+          <Link className='footer__ourcommand' to='/ourcommand'>
+            Bizning jamoa
+          </Link>
+          <Link className='footer__documentation' to='/documentation'>
+            Hujjatlar
+          </Link>
+        </div>
       </div>
     </footer>
   )

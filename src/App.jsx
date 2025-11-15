@@ -26,6 +26,7 @@ import TalentedStudents from "./pages/TalentedS/TalentedStudents";
 import AboutSchool from "./pages/AboutSchool/AboutSchool";
 import Principals from "./pages/Principals/Principals";
 import ScientificWorks from "./pages/ScientificWorks/ScientificWorks";
+import Documentation from "./pages/Documentation/Documentation";
 import ScrollTop from "./components/ScrollTop/ScrollTop";
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
     "/aboutschool",
     "/principals",
     "/scientificworks",
+    "/documentation",
   ];
 
   useEffect(() => {
@@ -151,6 +153,7 @@ function App() {
         <Route path="/aboutschool" element={<Layout><AboutSchool /></Layout>} />
         <Route path="/principals" element={<Layout><Principals /></Layout>} />
         <Route path="/scientificworks" element={<Layout><ScientificWorks /></Layout>} />
+        <Route path="/documentation" element={<Layout><Documentation /></Layout>} />
 
       </Routes>
       <Chat />
