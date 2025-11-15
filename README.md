@@ -50,6 +50,9 @@ Bu loyiha Sergeli tumanidagi ixtisoslashtirilgan maktab uchun yaratilgan to'liq 
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+![AOS](https://img.shields.io/badge/AOS-Animation-000000?style=for-the-badge&logo=aos&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 
 ### Kutubxona va Frameworklar
 - **React Router DOM** - Sahifalar o'rtasida navigatsiya
