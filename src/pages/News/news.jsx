@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { IoCalendarNumber } from "react-icons/io5";
 import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
+import { MdViewList, MdAccessTime, MdHistory } from "react-icons/md";
 import { Link } from "react-router-dom";
 import "/src/pages/News/news.css";
 import AOS from "aos";
@@ -18,7 +19,32 @@ function News() {
     localStorage.setItem("bookmarkedNews", JSON.stringify(bookmarked));
   }, [bookmarked]);
 
+  const sortOptions = ["all", "bookmarked", "recent", "oldest"];
+  const sortIcons = [<MdViewList />, <BsBookmark />, <MdAccessTime />, <MdHistory />];
   const [sortOption, setSortOption] = useState("all");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const handleSortSelect = (option) => {
+    setSortOption(option);
+    setIsDropdownOpen(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    if (isDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isDropdownOpen]);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -85,16 +111,25 @@ function News() {
           />
         </form>
 
-        <select
-          className="sort-select"
-          value={sortOption}
-          onChange={(e) => setSortOption(e.target.value)}
-        >
-          <option value="all">Barchasi</option>
-          <option value="bookmarked">Faqat saqlanganlar</option>
-          <option value="recent">Eng yangilari</option>
-          <option value="oldest">Eng eskilari</option>
-        </select>
+        <div className="sort-dropdown" ref={dropdownRef}>
+          <button className="sort-btn active" onClick={() => setIsDropdownOpen(!isDropdownOpen)} title={sortOption === 'all' ? 'Barchasi' : sortOption === 'bookmarked' ? 'Faqat saqlanganlar' : sortOption === 'recent' ? 'Eng yangilari' : 'Eng eskilari'}>
+            {sortIcons[sortOptions.indexOf(sortOption)]}
+          </button>
+          {isDropdownOpen && (
+            <div className="sort-options">
+              {sortOptions.map((option, index) => (
+                <button
+                  key={option}
+                  className={`sort-option ${sortOption === option ? 'active' : ''}`}
+                  onClick={() => handleSortSelect(option)}
+                  title={option === 'all' ? 'Barchasi' : option === 'bookmarked' ? 'Faqat saqlanganlar' : option === 'recent' ? 'Eng yangilari' : 'Eng eskilari'}
+                >
+                  {sortIcons[index]}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       <div data-aos="fade-up" className="news-list">

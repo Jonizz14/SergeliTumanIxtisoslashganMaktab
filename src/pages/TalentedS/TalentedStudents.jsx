@@ -83,7 +83,6 @@ function TalentedStudents() {
             <div
               key={student.id}
               className="talented-students__card"
-              onClick={() => handleNavigate(student)}
               role="button"
               tabIndex={0}
               onKeyDown={(e) => handleKeyDown(e, student)}
