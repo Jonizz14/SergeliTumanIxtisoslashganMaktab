@@ -8,7 +8,7 @@
 
 > 🌟 **Zamonaviy, interaktiv va foydalanuvchi-do'st maktab axborot sayti** - Sergeli tumanidagi ixtisoslashtirilgan maktab uchun yaratilgan.
 
-![School Website Preview](./screenshots/preview.png)
+![School Website Preview](./screenshots/home.png)
 
 ## 📖 Tavsif
 
