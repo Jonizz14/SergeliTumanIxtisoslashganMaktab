@@ -4,7 +4,7 @@ import { FiX, FiCopy, FiThumbsUp, FiThumbsDown, FiCheck, FiMaximize2, FiMinimize
 import { RiGeminiFill } from "react-icons/ri";
 import "./Chat.css";
 
-const API_KEY = "AIzaSyDfpfxVApLrDyv2Zc1yt7AqyElGkKHgj-4";
+const API_KEY = import.meta.env.VITE_GOOGLE_GEMINI_API_KEY;
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 export default function Chat() {
